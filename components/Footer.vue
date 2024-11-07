@@ -1,5 +1,5 @@
 <template>
-    <nav :class="isClose ? 'is-close':''" class="w-100 flex justify-between items-center px-5 bg-pokeball-red shadow-xl rounded-br-lg rounded-bl-lg border-b-2 border-b-slate-950">
+    <footer :class="isClose ? 'is-close':''" class="w-100 flex justify-between items-center px-5 bg-pokeball-red shadow-xl rounded-br-lg rounded-bl-lg border-b-2 border-b-slate-950">
         <div class="">
             <img class="h-10" src="~/assets/images/catchthemall.png" alt="catch them all icon"/>
         </div>
@@ -7,7 +7,7 @@
         :class="themeStore.isDarkMode == true ? 'dark' : ''">
             <img class="poke-ball" src="~/assets/svg/pokeball.svg"/>
         </div>
-    </nav>
+    </footer>
 </template>
 
 <script setup>
