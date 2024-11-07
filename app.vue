@@ -40,8 +40,8 @@ export default {
         const x = (clientX - left) / width - 0.5;
         const y = (clientY - top) / height - 0.5;
         
-        this.rotationX = y * 50;
-        this.rotationY = x * 50;
+        this.rotationX = y * 25;
+        this.rotationY = x * 25;
       }
     },
     resetTilt() {

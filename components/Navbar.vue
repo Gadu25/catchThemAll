@@ -30,7 +30,7 @@
     $ballWidth: 25px;
     nav {
         height: 60px;
-        transition: all 2s;
+        transition: all 1.5s;
         &.is-close{
             height: 50vh;
             border-bottom: 7px solid;
