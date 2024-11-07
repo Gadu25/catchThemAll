@@ -1,22 +1,24 @@
 <template>
-  <div class="w-100 text-center">
-    <h1 class="text-3xl font-bold underline">
-      Hello world!
-    </h1>
-      <Lottie :options="lottieOptions" height="400" width="400" />
+  <div class="bg-lightBackground dark:bg-darkBackground min-h-screen text-lightText dark:text-darkText">
+    <Navbar/>
+    <h1 class="text-primary">Catch Them All</h1>
+    <p class="text-secondary">Explore your favorite Pokémon!</p>
   </div>
 </template>
 
 <script>
+import Navbar from '~/components/Navbar.vue'
+
 export default {
   name: 'Hero',
+  components: { Navbar },
   data() {
     return {
-      lottieOptions: {
-        animationData: 'https://lottie.host/6a253a45-361e-42e0-bcc2-16abb1d54141/z4x30S26Kr.json', // replace with your own Lottie animation JSON file
-        loop: true,
-        autoplay: true
-      }
+      // lottieOptions: {
+      //   animationData: 'https://lottie.host/6a253a45-361e-42e0-bcc2-16abb1d54141/z4x30S26Kr.json', // replace with your own Lottie animation JSON file
+      //   loop: true,
+      //   autoplay: true
+      // }
     }
   },
   // mounted() {
