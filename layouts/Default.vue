@@ -9,14 +9,16 @@
                 <div class="inner-circle" :class="isClose ? 'is-close' : ''"></div>
             </div>
             <NuxtPage />
+            <Footer :isClose="isClose"/>
         </div>
     </div>
 </template>
 
 <script>
 import Navbar from '~/components/Navbar.vue'
+import Footer from '~/components/footer.vue';
 export default {
-    components: { Navbar },
+    components: { Navbar, Footer },
     data() {
         return {
             isClose: true,
