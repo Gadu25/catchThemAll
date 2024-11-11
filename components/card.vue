@@ -1,5 +1,5 @@
 <template>
-    <div class="card w-full h-full m-2 p-5 border rounded-lg flex justify-between cursor-pointer">
+    <div class="card w-full m-2 p-5 border rounded-lg flex justify-between cursor-pointer">
         <img class="w-3/6" :src="pokemonImage" :alt="name + '-image'" />
         <div>
             <p><strong>{{ name }}</strong></p>
