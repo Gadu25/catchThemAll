@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full h-full m-2 p-5 border rounded-lg flex justify-between">
+    <div class="card w-full h-full m-2 p-5 border rounded-lg flex justify-between cursor-pointer">
         <img class="w-3/6" :src="pokemonImage" :alt="name + '-image'" />
         <div>
             <p><strong>{{ name }}</strong></p>
@@ -15,8 +15,6 @@
 </template>
 
 <script>
-// import { usePokemonStore } from '~/store/pokemon';
-// import { mapState, mapActions } from 'pinia';
 import axios from 'axios';
 export default {
     name: 'Card',
@@ -94,4 +92,22 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+    .card {
+        &:hover {
+            animation: jumpUp .2s linear;
+        }
+    }
+
+    @keyframes jumpUp {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+    100% {
+        transform: translateY(0);
+    }
+    }
+</style>
