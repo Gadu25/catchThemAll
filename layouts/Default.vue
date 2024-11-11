@@ -1,5 +1,5 @@
 <template>
-    <div class="main-container w-screen h-screen overflow-hidden">
+    <div class="main-container w-full">
         <div :class="isClose ? 'custom-main' : ''"
             class="bg-lightBackground dark:bg-darkBackground min-h-screen text-lightText dark:text-darkText"
             @mousemove="handleMouseMove" :style="pokeBallStyle">

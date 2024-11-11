@@ -1,7 +1,5 @@
 <template>
-    <div>
-        <input class="custom-search-bar" type="text" placeholder="Search a Pokemon"/>
-    </div>
+    <input class="custom-search-bar w-full" type="text" placeholder="Search a Pokemon"/>
 </template>
 
 <script>
@@ -12,7 +10,6 @@
 
 <style lang="scss" scoped>
     .custom-search-bar {
-        width: 80vw;
         height: 40px;
         border-radius: 20px;
         padding: 0 20px;
