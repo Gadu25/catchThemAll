@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-wrap">
         <template v-for="pokemon in pokemons">
-            <div class="w-full sm:w-1/2 lg:w-1/4 p-2">
+            <div class="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 p-2">
                 <Card :name="pokemon.name" :url="pokemon.url"/>
             </div>
         </template>

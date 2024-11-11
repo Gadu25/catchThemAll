@@ -1,11 +1,11 @@
 <template>
-    <div class="w-full m-2 p-5 border rounded flex justify-between">
+    <div class="w-full m-2 p-5 border rounded-lg flex justify-between">
         <img class="w-3/6" :src="pokemonImage" :alt="name + '-image'" />
         <div>
             <p><strong>{{ name }}</strong></p>
             <div class="py-2">
                 <template v-for="type in pokemonTypes">
-                    <div :class="pokemonColor" class="p-1 my-1 rounded border text-white text-center">
+                    <div :class="pokemonColor" class="p-1 my-1 rounded text-white text-center">
                         <small>{{ type.type.name }}</small>
                     </div>
                 </template>

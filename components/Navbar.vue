@@ -29,6 +29,7 @@
 <style lang="scss">
     $ballWidth: 25px;
     nav {
+        z-index: 10;
         height: 60px;
         transition: all 1.5s;
         &.is-close{

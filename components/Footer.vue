@@ -17,6 +17,7 @@
         position: absolute;
         bottom: 0;
         height: 0;
+        z-index: 10;
         transition: all 1.5s;
         &.is-close {
             height: 50vh;

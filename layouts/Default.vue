@@ -1,5 +1,5 @@
 <template>
-    <div class="main-container w-full">
+    <div class="main-container w-full" :class="isClose? 'w-screen overflow-hidden h-screen':''">
         <div :class="isClose ? 'custom-main' : ''"
             class="bg-lightBackground dark:bg-darkBackground min-h-screen text-lightText dark:text-darkText"
             @mousemove="handleMouseMove" :style="pokeBallStyle">
@@ -8,7 +8,9 @@
                 @mousemove="resetTilt">
                 <div class="inner-circle" :class="isClose ? 'is-close' : ''"></div>
             </div>
-            <NuxtPage />
+            <div class="main-page" :class="isClose ? 'is-close':''">
+                <NuxtPage />
+            </div>
             <Footer :isClose="isClose"/>
         </div>
     </div>
@@ -62,7 +64,7 @@ $circleArea: 12vh;
 
     .custom-circle {
         position: absolute;
-        z-index: 5;
+        z-index: 11;
         transition: transform .2s linear;
         top: calc(50vh - $circleArea/2);
         left: calc(50vw - $circleArea/2);
@@ -109,6 +111,16 @@ $circleArea: 12vh;
 
         &:active {
             transform: scale(1);
+        }
+    }
+
+    .main-page {
+        height: 100%;
+        opacity: 1;
+        transition: all 5s linear;
+        &.is-close {
+            opacity: 0;
+            height: 0;
         }
     }
 }
