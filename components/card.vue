@@ -1,5 +1,5 @@
 <template>
-    <div class="w-full m-2 p-5 border rounded-lg flex justify-between">
+    <div class="w-full h-full m-2 p-5 border rounded-lg flex justify-between">
         <img class="w-3/6" :src="pokemonImage" :alt="name + '-image'" />
         <div>
             <p><strong>{{ name }}</strong></p>
