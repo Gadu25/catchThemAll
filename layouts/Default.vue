@@ -11,16 +11,16 @@
             <div class="main-page" :class="!isClose ? 'is-open' : ''">
                 <NuxtPage v-if="pageShow" />
             </div>
-            <Footer :isClose="isClose" />
+            <Foot :isClose="isClose" />
         </div>
     </div>
 </template>
 
 <script>
 import Navbar from '~/components/navbar.vue'
-import Footer from '~/components/footer.vue';
+import Foot from '~/components/footer.vue';
 export default {
-    components: { Navbar, Footer },
+    components: { Navbar, Foot },
     data() {
         return {
             isClose: true,
