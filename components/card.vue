@@ -5,7 +5,7 @@
             <p><strong>{{ name }}</strong></p>
             <div class="py-2">
                 <template v-for="type in pokemonTypes">
-                    <div :class="pokemonColor" class="p-1 my-1 rounded text-white text-center">
+                    <div :class="pokemonColor(type.type.name)" class="p-1 my-1 rounded text-white text-center">
                         <small>{{ type.type.name }}</small>
                     </div>
                 </template>
@@ -54,11 +54,11 @@ export default {
         pokemonTypes() {
             return this.pokemonData?.types
         },
-        pokemonColor() {
-            const typeName = this.pokemonData?.types?.[0]?.type?.name || 'unknown';
-            const colorObj = this.colors.find((color) => color.name === typeName);
-            return colorObj ? colorObj.color : 'bg-gray-300';
-        },
+        // pokemonColor() {
+        //     const typeName = this.pokemonData?.types?.[0]?.type?.name || 'unknown';
+        //     const colorObj = this.colors.find((color) => color.name === typeName);
+        //     return colorObj ? colorObj.color : 'bg-gray-300';
+        // },
 
     },
     methods: {
@@ -74,7 +74,11 @@ export default {
                 this.loading = false;
             }
         },
-
+        pokemonColor(typeName) {
+            console.log(typeName)
+            const colorObj = this.colors.find((color) => color.name === typeName);
+            return colorObj ? colorObj.color : 'bg-gray-300';
+        }
     },
     mounted() {
         this.handleFetch();
