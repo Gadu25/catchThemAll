@@ -12,6 +12,9 @@
 
 <style lang="scss" scoped>
     .custom-search-bar {
-
+        width: 80vw;
+        height: 40px;
+        border-radius: 20px;
+        padding: 0 20px;
     }
 </style>
