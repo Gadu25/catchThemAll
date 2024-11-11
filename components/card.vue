@@ -68,10 +68,8 @@ export default {
             this.loading = true;
             this.error = null;
             try {
-            console.log(this.url)
             const response = await axios.get(this.url);
             this.pokemonData = response.data;
-                console.log(response)
             } catch (err) {
                 this.error = 'Failed to load Pokémon data';
             } finally {
