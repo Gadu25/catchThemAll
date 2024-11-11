@@ -75,7 +75,6 @@ export default {
             }
         },
         pokemonColor(typeName) {
-            console.log(typeName)
             const colorObj = this.colors.find((color) => color.name === typeName);
             return colorObj ? colorObj.color : 'bg-gray-300';
         }
