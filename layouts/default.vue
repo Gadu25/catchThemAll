@@ -9,7 +9,7 @@
                 <div class="inner-circle" :class="!isClose ? 'is-open' : ''"></div>
             </div>
             <div class="main-page" :class="!isClose ? 'is-open' : ''">
-                <NuxtPage/>
+                <NuxtPage v-if="pageShow" />
             </div>
             <Foot :isClose="isClose" />
         </div>
