@@ -45,18 +45,13 @@
             },
             paginatePrev(){
                 if(this.pokemons.previous){
-                    console.log(this.loading)
                     this.fetchPokemons(this.pokemons.previous);
-                    console.log(this.loading)
 
                 }
             },
             paginateNext(){
                 if(this.pokemons.next){
-                    console.log(this.loading)
                     this.fetchPokemons(this.pokemons.next);
-                    console.log(this.loading)
-
                 }
             }
         },
