@@ -3,7 +3,7 @@
         <div class="custom-index flex justify-center w-full py-4 xl:px-32 lg:px-20 sm:px-10 px-4">
             <SearchBar/>
         </div>
-        <div class="py-5 xl:px-32 lg:px-20 sm:px-10 px-4">
+        <div class="pb-3 xl:px-32 lg:px-20 sm:px-10 px-4">
             <PokemonList/>
         </div>
     </div>

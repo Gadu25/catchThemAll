@@ -18,6 +18,7 @@ module.exports = {
         darkBackground: '#1A1A1A',
         darkText: '#FFFFFF',
         lightText: '#333333',
+        disabledGray: '#d1d5db',
         'pokeball-red': '#E60000',
         'pokeball-white': '#FFFFFF',
         'pokeball-black': '#2A2A2A',

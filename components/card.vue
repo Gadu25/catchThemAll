@@ -41,7 +41,7 @@ export default {
                 { "name": "dragon", "color": "bg-purple-600" },
                 { "name": "dark", "color": "bg-gray-800" },
                 { "name": "fairy", "color": "bg-pink-300" },
-                { "name": "stellar", "color": "bg-indigo-400" },  // Custom example for "stellar"
+                { "name": "stellar", "color": "bg-indigo-400" },    
                 { "name": "unknown", "color": "bg-gray-300" }
             ],
             loading: false,
@@ -89,6 +89,11 @@ export default {
             type: String,
             required: true
         }
+    },
+    watch: {
+        url(newValue, oldValue) {
+            this.handleFetch()
+        },
     }
 }
 </script>
@@ -120,6 +125,7 @@ export default {
             animation: throwBall .4s linear forwards;
             opacity: 1;
         }
+
         .pokemon {
             animation: catchAnimation 0.5s forwards .4s;
         }
@@ -188,17 +194,19 @@ export default {
 }
 
 @keyframes catchAnimation {
-  0% {
-    transform: scale(1);
-    opacity: 1;
-  }
-  50% {
-    transform: scale(0.5);
-    opacity: 0.5;
-  }
-  100% {
-    transform: scale(0);
-    opacity: 0;
-  }
+    0% {
+        transform: scale(1);
+        opacity: 1;
+    }
+
+    50% {
+        transform: scale(0.5);
+        opacity: 0.5;
+    }
+
+    100% {
+        transform: scale(0);
+        opacity: 0;
+    }
 }
 </style>
