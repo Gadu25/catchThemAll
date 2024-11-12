@@ -41,7 +41,6 @@
         methods: {
             ...mapActions(usePokemonsStore, ['fetchPokemons']),
             async handleFetch() {
-                console.log(this.loading)
                 await this.fetchPokemons();
             },
             paginatePrev(){

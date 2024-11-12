@@ -1,6 +1,6 @@
 <template>
     <div v-if="!loading" class="card w-full m-2 p-5 border rounded-lg flex justify-between cursor-pointer"
-        :class="cardClicked ? 'clicked' : ''" @click="cardClicked = true">
+        :class="cardClicked ? 'clicked' : ''" @click="clickCard(pokemonData.id)">
         <img class="pokemon w-3/6" :src="pokemonImage" :alt="name + '-image'" />
         <div>
             <p><strong>{{ name }}</strong></p>
@@ -14,8 +14,10 @@
         </div>
         <div class="pokeball"><img src='~/assets/svg/pokeball.svg' alt='pokeball' /></div>
     </div>
-    <div v-else class="flex justify-center w-full h-full align-center">
-        <img src="~/assets/gifs/pikachuRun.gif"/>
+    <div v-else class="p-5 border rounded-lg flex justify-center w-full h-56 align-center">
+        <div class="m-20">
+            <i class="fa-solid fa-spinner fa-spin"></i>
+        </div>
     </div>
 </template>
 
@@ -75,9 +77,17 @@ export default {
                 this.loading = false;
             }
         },
+        delay(ms) {
+            return new Promise(resolve => setTimeout(resolve, ms));
+        },
         pokemonColor(typeName) {
             const colorObj = this.colors.find((color) => color.name === typeName);
             return colorObj ? colorObj.color : 'bg-gray-300';
+        },
+        async clickCard(id) {
+            this.cardClicked = true
+            await this.delay(1200);
+            this.$router.push({ name: 'pokemon-id', params: { id } });
         }
     },
     mounted() {
@@ -161,38 +171,38 @@ export default {
 
 @keyframes throwBall {
     0% {
-        transform: translate(0px, 0px) rotate(0);
-        scale: 1
+        transform: translate(0px, 0px) rotate(0deg);
+        scale: 1;
     }
 
     14% {
-        transform: translate(0px, -25px);
-        scale: 1
+        transform: translate(0px, -40px) rotate(20deg);
+        scale: 1;
     }
 
     28% {
-        transform: translate(0px, -45px);
-        scale: .9
+        transform: translate(0px, -60px) rotate(40deg);
+        scale: .9;
     }
 
     42% {
-        transform: translate(0px, -65px);
-        scale: .9
+        transform: translate(10px, -80px) rotate(60deg);
+        scale: .9;
     }
 
     57% {
-        transform: translate(20px, -85px);
-        scale: .8
+        transform: translate(35px, -100px) rotate(90deg);
+        scale: .8;
     }
 
     71% {
-        transform: translate(40px, -105px);
-        scale: .7
+        transform: translate(55px, -120px) rotate(120deg);
+        scale: .7;
     }
 
     100% {
-        transform: translate(60px, -85px) rotate(360deg);
-        scale: .7
+        transform: translate(75px, -90px) rotate(360deg);
+        scale: .7;
     }
 }
 

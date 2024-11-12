@@ -1,10 +1,9 @@
 <template>
     <nav :class="isClose ? 'is-close':''" class="w-100 flex justify-between items-center px-5 bg-pokeball-red shadow-xl rounded-br-lg rounded-bl-lg border-b-2 border-b-slate-950">
-        <div class="">
+        <div>
             <img class="h-10" src="~/assets/images/catchthemall.png" alt="catch them all icon"/>
         </div>
-        <div class="custom-toggle pt-1.5" @click="toggleTheme" 
-        :class="themeStore.isDarkMode == true ? 'dark' : ''">
+        <div class="custom-toggle pt-1.5" @click="toggleTheme" :class="themeStore.isDarkMode == true ? 'dark' : ''">
             <img class="poke-ball" src="~/assets/svg/pokeball.svg"/>
         </div>
     </nav>

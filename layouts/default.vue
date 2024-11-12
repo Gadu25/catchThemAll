@@ -8,9 +8,7 @@
                 @mousemove="resetTilt">
                 <div class="inner-circle" :class="!isClose ? 'is-open' : ''"></div>
             </div>
-            <div class="main-page" :class="!isClose ? 'is-open' : ''">
-                <NuxtPage v-if="pageShow" />
-            </div>
+            <NuxtPage v-if="pageShow" />
             <Foot :isClose="isClose" />
         </div>
     </div>
@@ -136,18 +134,6 @@ $circleArea: 12vh;
 
         &:active {
             transform: scale(1);
-        }
-    }
-
-    .main-page {
-        // opacity: 0;
-        height: 0px;
-        overflow: hidden;
-        transition: all 5s linear;
-
-        &.is-open {
-            height: 100%;
-            // opacity: 1;
         }
     }
 }
