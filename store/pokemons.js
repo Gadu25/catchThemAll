@@ -4,7 +4,7 @@ import axios from 'axios';
 import _ from 'lodash';
 
 export const usePokemonsStore = defineStore('pokemons', () => {
-  const pokemons = ref([]);
+  const pokemons = ref({});
   const loading = ref(false);
   const error = ref(null);
 

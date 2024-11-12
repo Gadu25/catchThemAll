@@ -55,8 +55,11 @@
                 }
             }
         },
-        mounted() {
-            this.handleFetch();
+        created() {
+            // console.log(this.pokemons)
+            if(isEmpty(this.pokemons)){
+                this.handleFetch();
+            }
         },
     }
 </script>
