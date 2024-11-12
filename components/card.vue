@@ -1,5 +1,5 @@
 <template>
-    <div class="card w-full m-2 p-5 border rounded-lg flex justify-between cursor-pointer"
+    <div v-if="!loading" class="card w-full m-2 p-5 border rounded-lg flex justify-between cursor-pointer"
         :class="cardClicked ? 'clicked' : ''" @click="cardClicked = true">
         <img class="pokemon w-3/6" :src="pokemonImage" :alt="name + '-image'" />
         <div>
@@ -13,6 +13,9 @@
             </div>
         </div>
         <div class="pokeball"><img src='~/assets/svg/pokeball.svg' alt='pokeball' /></div>
+    </div>
+    <div v-else class="flex justify-center w-full h-full align-center">
+        <img src="~/assets/gifs/pikachuRun.gif"/>
     </div>
 </template>
 
