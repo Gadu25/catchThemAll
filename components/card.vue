@@ -197,12 +197,12 @@ export default {
 
     71% {
         transform: translate(55px, -120px) rotate(120deg);
-        scale: .7;
+        scale: .8;
     }
 
     100% {
         transform: translate(75px, -90px) rotate(360deg);
-        scale: .7;
+        scale: .8;
     }
 }
 
