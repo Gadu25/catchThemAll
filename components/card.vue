@@ -179,15 +179,11 @@ export default {
     71% {
         transform: translate(40px, -105px);
         scale: .7
-        // opacity: 1;
-        // scale: 1.2;
     }
 
     100% {
         transform: translate(60px, -85px) rotate(360deg);
         scale: .7
-        // opacity: 0;
-        // scale: 1.5;
     }
 }
 
