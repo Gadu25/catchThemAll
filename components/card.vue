@@ -1,6 +1,7 @@
 <template>
-    <div class="card w-full m-2 p-5 border rounded-lg flex justify-between cursor-pointer">
-        <img class="w-3/6" :src="pokemonImage" :alt="name + '-image'" />
+    <div class="card w-full m-2 p-5 border rounded-lg flex justify-between cursor-pointer"
+        :class="cardClicked ? 'clicked' : ''" @click="cardClicked = true">
+        <img class="pokemon w-3/6" :src="pokemonImage" :alt="name + '-image'" />
         <div>
             <p><strong>{{ name }}</strong></p>
             <div class="py-2">
@@ -11,6 +12,7 @@
                 </template>
             </div>
         </div>
+        <div class="pokeball"><img src='~/assets/svg/pokeball.svg' alt='pokeball' /></div>
     </div>
 </template>
 
@@ -44,7 +46,8 @@ export default {
             ],
             loading: false,
             error: null,
-            pokemonData: null
+            pokemonData: null,
+            cardClicked: false,
         }
     },
     computed: {
@@ -53,12 +56,7 @@ export default {
         },
         pokemonTypes() {
             return this.pokemonData?.types
-        },
-        // pokemonColor() {
-        //     const typeName = this.pokemonData?.types?.[0]?.type?.name || 'unknown';
-        //     const colorObj = this.colors.find((color) => color.name === typeName);
-        //     return colorObj ? colorObj.color : 'bg-gray-300';
-        // },
+        }
 
     },
     methods: {
@@ -66,8 +64,8 @@ export default {
             this.loading = true;
             this.error = null;
             try {
-            const response = await axios.get(this.url);
-            this.pokemonData = response.data;
+                const response = await axios.get(this.url);
+                this.pokemonData = response.data;
             } catch (err) {
                 this.error = 'Failed to load Pokémon data';
             } finally {
@@ -96,21 +94,115 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-    .card {
-        &:hover {
-            animation: jumpUp .2s linear;
+.card {
+    position: relative;
+
+    &:hover {
+        animation: jumpUp .2s linear;
+
+        .pokeball {
+            opacity: 1;
         }
     }
 
-    @keyframes jumpUp {
+    .pokeball {
+        position: absolute;
+        left: 15px;
+        bottom: 15px;
+        animation: spin 1s linear infinite;
+        width: 30px;
+        opacity: 0;
+        transition: opacity .3s linear 0s;
+    }
+
+    &.clicked {
+        .pokeball {
+            animation: throwBall .4s linear forwards;
+            opacity: 1;
+        }
+        .pokemon {
+            animation: catchAnimation 0.5s forwards .4s;
+        }
+    }
+}
+
+@keyframes jumpUp {
     0% {
         transform: translateY(0);
     }
+
     50% {
         transform: translateY(-10px);
     }
+
     100% {
         transform: translateY(0);
     }
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0);
     }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+@keyframes throwBall {
+    0% {
+        transform: translate(0px, 0px) rotate(0);
+        scale: 1
+    }
+
+    14% {
+        transform: translate(0px, -25px);
+        scale: 1
+    }
+
+    28% {
+        transform: translate(0px, -45px);
+        scale: .9
+    }
+
+    42% {
+        transform: translate(0px, -65px);
+        scale: .9
+    }
+
+    57% {
+        transform: translate(20px, -85px);
+        scale: .8
+    }
+
+    71% {
+        transform: translate(40px, -105px);
+        scale: .7
+        // opacity: 1;
+        // scale: 1.2;
+    }
+
+    100% {
+        transform: translate(60px, -85px) rotate(360deg);
+        scale: .7
+        // opacity: 0;
+        // scale: 1.5;
+    }
+}
+
+@keyframes catchAnimation {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(0.5);
+    opacity: 0.5;
+  }
+  100% {
+    transform: scale(0);
+    opacity: 0;
+  }
+}
 </style>
