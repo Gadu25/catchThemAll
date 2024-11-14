@@ -6,8 +6,11 @@
             <p><strong>{{ name }}</strong></p>
             <div class="py-2">
                 <template v-for="type in pokemonTypes">
-                    <div :class="pokemonColor(type.type.name)" class="p-1 my-1 rounded text-white text-center">
-                        <small>{{ type.type.name }}</small>
+                    <div :class="pokemonColor(type.type.name)" class="p-1 my-1 rounded text-white text-center shadow flex justify-center align-center">
+                        <img v-if="type.type.name != 'unknown'" class="h-7" :src="pokemonTypeBadge(type.type.name)" :alt="type.type.name+'-badge'"/>
+                        <div class="ms-2">
+                            <small>{{ type.type.name }}</small>
+                        </div>
                     </div>
                 </template>
             </div>
@@ -23,32 +26,13 @@
 
 <script>
 import axios from 'axios';
+import pokemonTypeClass from '~/data/pokemonTypeClass';
+
 export default {
     name: 'Card',
     data() {
         return {
-            colors: [
-                { "name": "normal", "color": "bg-gray-400" },
-                { "name": "fighting", "color": "bg-red-700" },
-                { "name": "flying", "color": "bg-blue-300" },
-                { "name": "poison", "color": "bg-purple-500" },
-                { "name": "ground", "color": "bg-yellow-700" },
-                { "name": "rock", "color": "bg-gray-600" },
-                { "name": "bug", "color": "bg-green-500" },
-                { "name": "ghost", "color": "bg-indigo-700" },
-                { "name": "steel", "color": "bg-gray-500" },
-                { "name": "fire", "color": "bg-red-500" },
-                { "name": "water", "color": "bg-blue-500" },
-                { "name": "grass", "color": "bg-green-400" },
-                { "name": "electric", "color": "bg-yellow-400" },
-                { "name": "psychic", "color": "bg-pink-500" },
-                { "name": "ice", "color": "bg-blue-200" },
-                { "name": "dragon", "color": "bg-purple-600" },
-                { "name": "dark", "color": "bg-gray-800" },
-                { "name": "fairy", "color": "bg-pink-300" },
-                { "name": "stellar", "color": "bg-indigo-400" },    
-                { "name": "unknown", "color": "bg-gray-300" }
-            ],
+            colors: pokemonTypeClass,
             loading: false,
             error: null,
             pokemonData: null,
@@ -83,6 +67,10 @@ export default {
         pokemonColor(typeName) {
             const colorObj = this.colors.find((color) => color.name === typeName);
             return colorObj ? colorObj.color : 'bg-gray-300';
+        },
+        pokemonTypeBadge(typeName){
+            const colorObj = this.colors.find((color) => color.name === typeName);
+            return colorObj.icon;
         },
         async clickCard(id) {
             this.cardClicked = true
