@@ -85,7 +85,7 @@ $circleArea: 12vh;
 
     .custom-circle {
         position: absolute;
-        z-index: 11;
+        z-index: 100;
         transition: all .3s linear;
         top: calc(50vh - $circleArea/2);
         left: calc(50vw - $circleArea/2);
