@@ -1,7 +1,6 @@
 <template>
   <div>
-    <div class="card my-5 xl:mx-32 lg:mx-20 sm:mx-4 border rounded-lg bg-card-light dark:bg-card-dark">
-      <!-- <p>Hello</p> -->
+    <div class="card my-5 xl:mx-32 lg:mx-20 sm:mx-4 mx-2 border rounded-lg bg-card-light dark:bg-card-dark">
       <div class="show-off" :class="!isShowingOff ? 'done' : ''">
         <div class="pokeball"><img src='~/assets/svg/pokeball.svg' alt='pokeball' /></div>
         <div class="pokemon" v-if="!loading" @click="playCry()">
@@ -175,6 +174,7 @@ export default {
       font-size: 16px;
       line-height: 1.5;
       white-space: nowrap;
+      text-wrap: wrap;
       overflow: hidden;
       display: inline-block;
 

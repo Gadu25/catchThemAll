@@ -32,7 +32,7 @@ module.exports = {
         'dark-purple': '#4B0082',
         'electric-yellow': '#FFDD00',
       },
-    },
+    }
   },
   plugins: [],
 }
