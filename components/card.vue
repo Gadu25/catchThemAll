@@ -45,7 +45,6 @@ export default {
         pokemonTypes() {
             return this.pokemonData?.types
         }
-
     },
     methods: {
         async handleFetch() {

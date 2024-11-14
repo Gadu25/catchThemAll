@@ -37,6 +37,22 @@ module.exports = {
       fontFamily: {
         sans: ['Quicksand', 'sans-serif'], // Set Quicksand as the default sans font
       },
+      keyframes: {
+        upDown: {
+          '0%': {
+              transform: 'translateY(0)'
+          },
+          '50%': {
+              transform: 'translateY(-5px)'
+          },
+          '100%': {
+              transform: 'translateY(0)'
+          }
+        }
+      },
+      animation: {
+        upDown: 'upDown 1.5s ease-in-out infinite', // define duration and looping here
+      },
     }
   },
   plugins: [],

@@ -3,7 +3,7 @@ import { ref } from 'vue';
 import axios from 'axios';
 import _ from 'lodash';
 
-export const usePokemonStore = defineStore('pokemon', (id) => {
+export const usePokemonStore = defineStore('pokemon', () => {
   const pokemon = ref({});
   const loading = ref(false);
   const error = ref(null);
