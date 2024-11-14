@@ -12,6 +12,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
+        'card-light': '#f8f9fa', // light mode card background
+        'card-dark': '#1f2937', // dark mode card background
         primary: '#FFCB05', // Pokémon yellow
         secondary: '#3B4CCA', // Pokémon blue
         lightBackground: '#F4F4F9',

@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!loading" class="card w-full m-2 p-5 border rounded-lg flex justify-between cursor-pointer"
+    <div v-if="!loading" class="card w-full p-5 border rounded-lg flex justify-between cursor-pointer hover:shadow bg-card-light dark:bg-card-dark"
         :class="cardClicked ? 'clicked' : ''" @click="clickCard(pokemonData.id)">
         <img class="pokemon w-3/6" :src="pokemonImage" :alt="name + '-image'" />
         <div>
@@ -118,6 +118,11 @@ export default {
     &:hover {
         animation: jumpUp .2s linear;
 
+        .pokemon {
+            transform: .3s scale(.8) linear;
+            animation: upDown 1.5s ease-in-out infinite;
+        }
+
         .pokeball {
             opacity: 1;
         }
@@ -220,6 +225,18 @@ export default {
     100% {
         transform: scale(0);
         opacity: 0;
+    }
+}
+
+@keyframes upDown {
+    0% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-3px);
+    }
+    100% {
+        transform: translateY(0);
     }
 }
 </style>
