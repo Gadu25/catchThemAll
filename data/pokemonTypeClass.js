@@ -21,102 +21,102 @@ import stellar from '~/assets/images/pokemonTypes/stellar.png'
 export default [
     { 
         "name": "normal", 
-        "color": "bg-gray-400",
+        "color": "#9CA3AF",
         "icon": normal
     },
     { 
         "name": "fighting", 
-        "color": "bg-red-700",
+        "color": "#B91C1C",
         "icon": fighting
     },
     { 
         "name": "flying", 
-        "color": "bg-blue-300",
+        "color": "#93C5FD",
         "icon": flying 
     },
     { 
         "name": "poison", 
-        "color": "bg-purple-500",
+        "color": "#A855F7",
         "icon": poison
     },
     { 
         "name": "ground", 
-        "color": "bg-yellow-700",
+        "color": "#B45309",
         "icon": ground
     },
     { 
         "name": "rock", 
-        "color": "bg-gray-600",
+        "color": "#4B5563",
         "icon": rock
     },
     { 
         "name": "bug", 
-        "color": "bg-green-500",
+        "color": "#10B981",
         "icon": bug
     },
     { 
         "name": "ghost", 
-        "color": "bg-indigo-700",
+        "color": "#4338CA",
         "icon": ghost
     },
     { 
         "name": "steel", 
-        "color": "bg-gray-500",
+        "color": "#6B7280",
         "icon": steel
     },
     { 
         "name": "fire", 
-        "color": "bg-red-500",
+        "color": "#EF4444",
         "icon": fire
     },
     { 
         "name": "water", 
-        "color": "bg-blue-500",
+        "color": "#3B82F6",
         "icon": water
     },
     { 
         "name": "grass", 
-        "color": "bg-green-400",
+        "color": "#4ADE80",
         "icon": grass
     },
     { 
         "name": "electric", 
-        "color": "bg-yellow-400",
+        "color": "#FBBF24",
         "icon": electric
     },
     { 
         "name": "psychic", 
-        "color": "bg-pink-500",
+        "color": "#EC4899",
         "icon": psychic
     },
     { 
         "name": "ice", 
-        "color": "bg-blue-200",
+        "color": "#BFDBFE",
         "icon": ice
     },
     { 
         "name": "dragon", 
-        "color": "bg-purple-600",
+        "color": "#7C3AED",
         "icon": dragon
     },
     { 
         "name": "dark", 
-        "color": "bg-gray-800",
+        "color": "#1F2937",
         "icon": dark
     },
     { 
         "name": "fairy", 
-        "color": "bg-pink-300",
+        "color": "#FBCFE8",
         "icon": fairy
     },
     { 
         "name": "stellar", 
-        "color": "bg-indigo-400",
+        "color": "#818CF8",
         "icon": stellar
     },    
     { 
         "name": "unknown", 
-        "color": "bg-gray-300",
+        "color": "#D1D5DB",
         "icon": '' 
     }
-]
+];
