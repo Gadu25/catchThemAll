@@ -6,13 +6,6 @@
             <p><strong>{{ name }}</strong></p>
             <div class="py-2">
                 <template v-for="type in pokemonTypes">
-                    <!-- <div :class="pokemonColor(type.type.name)" class="p-1 my-1 rounded text-white text-center shadow flex justify-between align-center">
-                        <img v-if="type.type.name != 'unknown'" class="h-7" :src="pokemonTypeBadge(type.type.name)" :alt="type.type.name+'-badge'"/>
-                        <div class="mx-2">
-                            <small>{{ type.type.name }}</small>
-                        </div>
-                    </div> -->
-
                     <PokemonTypeCard :name="name" :color="pokemonColor(type.type.name)" :badge="pokemonTypeBadge(type.type.name)"/>
                 </template>
             </div>
