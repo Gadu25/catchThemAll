@@ -6,7 +6,7 @@
             <p><strong>{{ name }}</strong></p>
             <div class="py-2">
                 <template v-for="type in pokemonTypes">
-                    <PokemonTypeCard :name="name" :color="pokemonColor(type.type.name)" :badge="pokemonTypeBadge(type.type.name)"/>
+                    <PokemonTypeCard :name="type.type.name" :color="pokemonColor(type.type.name)" :badge="pokemonTypeBadge(type.type.name)"/>
                 </template>
             </div>
         </div>
