@@ -73,7 +73,7 @@ export default {
         },
         async clickCard(id) {
             this.cardClicked = true
-            await this.delay(1200);
+            await this.delay(950);
             this.$router.push({ name: 'pokemon-id', params: { id } });
         }
     },

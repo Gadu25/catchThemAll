@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="card my-5 xl:mx-32 lg:mx-20 sm:mx-4 mx-2 border rounded-lg bg-card-light dark:bg-card-dark">
+    <div class="card my-5 xl:mx-32 lg:mx-20 sm:mx-4 mx-2 border shadow-md rounded-lg bg-card-light dark:bg-card-dark">
       <div class="show-off" :class="!isShowingOff ? 'done' : ''">
         <div class="pokeball"><img src='~/assets/svg/pokeball.svg' alt='pokeball' /></div>
         <div class="pokemon" v-if="!loading" @click="playCry()">
@@ -164,6 +164,7 @@ export default {
     justify-content: center;
     overflow: hidden;
     opacity: 0;
+    border-radius: 8px;
 
     &.done {
       animation: fadeIn .1s linear forwards;

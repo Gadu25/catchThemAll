@@ -1,6 +1,6 @@
 <template>
     <div>
-        <h3 class="text-lg">Types</h3>
+        <h3 class="text-lg font-bold">Types</h3>
         <div class="flex justify-center flex-wrap">
             <template v-for="typeClass in pokemonTypeClass">
                 <div class="mx-3 my-1">

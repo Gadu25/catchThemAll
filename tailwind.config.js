@@ -14,6 +14,8 @@ module.exports = {
       colors: {
         'card-light': '#f8f9fa', // light mode card background
         'card-dark': '#1f2937', // dark mode card background
+        'dialog-light':  '#ffffff',
+        'dialog-dark': 'rgba(0, 0, 0, 0.7)',
         primary: '#FFCB05', // Pokémon yellow
         secondary: '#3B4CCA', // Pokémon blue
         lightBackground: '#F4F4F9',
@@ -31,6 +33,9 @@ module.exports = {
         'water-blue': '#1E90FF',
         'dark-purple': '#4B0082',
         'electric-yellow': '#FFDD00',
+      },
+      fontFamily: {
+        sans: ['Quicksand', 'sans-serif'], // Set Quicksand as the default sans font
       },
     }
   },
