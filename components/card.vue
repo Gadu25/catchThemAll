@@ -3,7 +3,7 @@
         :class="cardClicked ? 'clicked' : ''" @click="clickCard(pokemonData.id)">
         <img class="pokemon w-3/6" :src="pokemonImage" :alt="name + '-image'" />
         <div>
-            <p><strong>{{ name }}</strong></p>
+            <p class="first-letter:uppercase"><strong>{{ name }}</strong></p>
             <div class="py-2">
                 <template v-for="type in pokemonTypes">
                     <PokemonTypeCard :name="type.type.name" :color="pokemonColor(type.type.name)" :badge="pokemonTypeBadge(type.type.name)"/>
