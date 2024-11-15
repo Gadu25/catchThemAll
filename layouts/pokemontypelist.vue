@@ -5,7 +5,7 @@
             <template v-for="typeClass in pokemonTypes">
                 <div class="me-3 my-1">
                     <PokemonTypeCard 
-                        v-if="typeClass.name ? typeClass.name : typeClass.type.name != 'unknown'"
+                        v-if="typeClass.name != 'unknown'"
                         :name="typeClass.name ? typeClass.name : typeClass.type.name" 
                         :color="pokemonColor(typeClass.name ? typeClass.name : typeClass.type.name)" 
                         :badge="pokemonTypeBadge(typeClass.name ? typeClass.name : typeClass.type.name)"
