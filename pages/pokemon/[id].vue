@@ -2,19 +2,21 @@
   <div v-if="!isPageLoading" class="scene scene--card">
     <div class="card my-5 xl:mx-32 lg:mx-20 sm:mx-4 mx-2 border rounded-lg bg-card-light dark:bg-card-dark" :class="isFlipped ? 'is-flipped':'cursor-pointer'" @click="finishShowOff()">
       <div class="card__face card__face--front">
-        <div v-if="!isFlipped" class="show-off " :class="!isShowingOff ? 'done' : ''">
-          <div class="pokeball"><img src='~/assets/svg/pokeball.svg' alt='pokeball' /></div>
-          <div class="pokemon" v-if="!loading" @click="playCry()">
-            <div class="container">
-              <img :src="pokemon.sprites?.other.showdown.front_default" />
-              <div class="pokemon-ground">
+        <template v-if="!isFlipped">
+          <div class="show-off " :class="!isShowingOff ? 'done' : ''">
+            <div class="pokeball"><img src='~/assets/svg/pokeball.svg' alt='pokeball' /></div>
+            <div class="pokemon" v-if="!loading" @click="playCry()">
+              <div class="container">
+                <img :src="pokemon.sprites?.other.showdown.front_default" />
+                <div class="pokemon-ground">
+                </div>
               </div>
             </div>
           </div>
-        </div>
-        <div class="dialogue-box" :class="!isShowingOff ? 'done' : ''">
-          <div class="text">Amazing! <span class="first-letter:uppercase">{{pokemon.name}}</span> was successfully caught!</div>
-        </div>
+          <div class="dialogue-box" :class="!isShowingOff ? 'done' : ''">
+            <div class="text">Amazing! <span class="first-letter:uppercase">{{pokemon.name}}</span> was successfully caught!</div>
+          </div>
+        </template>
       </div>
       <div class="card__face card__face--back">
         <div class="flex flex-row-reverse justify-between p-5">
