@@ -1,6 +1,6 @@
 <template>
   <div v-if="!isPageLoading" class="scene scene--card">
-    <div class="card my-5 xl:mx-32 lg:mx-20 sm:mx-4 mx-2 border shadow-md rounded-lg bg-card-light dark:bg-card-dark" :class="isFlipped ? 'is-flipped':'cursor-pointer'" @click="finishShowOff()">
+    <div class="card my-5 xl:mx-32 lg:mx-20 sm:mx-4 mx-2 border rounded-lg bg-card-light dark:bg-card-dark" :class="isFlipped ? 'is-flipped':'cursor-pointer'" @click="finishShowOff()">
       <div class="card__face card__face--front">
         <div class="show-off " :class="!isShowingOff ? 'done' : ''">
           <div class="pokeball"><img src='~/assets/svg/pokeball.svg' alt='pokeball' /></div>
