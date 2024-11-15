@@ -1,7 +1,7 @@
 <template>
     <div>
         <h3 v-if="isShowTitle" class="text-lg font-bold">Types</h3>
-        <div class="flex justify-start flex-wrap">
+        <div class="flex flex-wrap" :class="isCentered ? 'justify-center': 'justify-start'">
             <template v-for="typeClass in pokemonTypes">
                 <div class="me-3 my-1">
                     <PokemonTypeCard 
@@ -44,6 +44,10 @@
                 default: pokemonTypeClass
             },
             isShowTitle: {
+                type: Boolean,
+                default: true
+            },
+            isCentered: {
                 type: Boolean,
                 default: true
             }

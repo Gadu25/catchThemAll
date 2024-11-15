@@ -29,7 +29,7 @@
               </div>
             </div>
             <p class="">{{ filteredFlavorText(species?.flavor_text_entries[0]?.flavor_text) }}</p>
-            <PokemonTypeList :pokemonTypes="pokemon.types" :isShowTitle="false"/>
+            <PokemonTypeList :pokemonTypes="pokemon.types" :isShowTitle="false" :isCentered="false"/>
             <!-- <templates v-for="type in pokemon.types">
               <PokemonTypeCard :name="type.type.name" :color="pokemonColor(type.type.name)" :badge="pokemonTypeBadge(type.type.name)"/>
             </templates> -->
