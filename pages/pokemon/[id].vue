@@ -48,11 +48,11 @@
                 </tr> -->
                 <tr class="border-b">
                   <td>Weight</td>
-                  <td>{{ pokemon.weight }}</td>
+                  <td>{{ pokemon.weight / 10 }} kg</td>
                 </tr>
                 <tr class="border-b">
                   <td>Height</td>
-                  <td>{{ pokemon.height }}</td>
+                  <td>{{ pokemon.height / 10 }} m</td>
                 </tr>
                 <tr class="border-b">
                   <td>Abilities</td>
