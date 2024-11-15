@@ -21,7 +21,7 @@
 
 <script>
     import { mapActions, mapState } from 'pinia';
-    import { useAllPokemonStore } from '~/store/allPokemon';
+    import {useAllPokemonStore } from '~/store/allpokemon'
     export default {
         name: 'SearchBar',
         data(){
