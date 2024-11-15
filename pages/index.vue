@@ -25,8 +25,10 @@ export default {
         }
     },
     computed: {
+
     },
     methods: {
+        
     },
     props: {
         isClose: {
