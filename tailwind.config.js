@@ -12,27 +12,27 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        'card-light': '#f8f9fa', // light mode card background
-        'card-dark': '#1f2937', // dark mode card background
-        'dialog-light':  '#ffffff',
-        'dialog-dark': 'rgba(0, 0, 0, 0.7)',
-        primary: '#FFCB05', // Pokémon yellow
-        secondary: '#3B4CCA', // Pokémon blue
-        lightBackground: '#F4F4F9',
-        darkBackground: '#1A1A1A',
-        darkText: '#FFFFFF',
-        lightText: '#333333',
-        disabledGray: '#d1d5db',
-        'pokeball-red': '#E60000',
+        'card-light': '#f0f2f5', // Softer light mode card background
+        'card-dark': '#2d3748', // Softer dark mode card background
+        'dialog-light': '#ffffff',
+        'dialog-dark': 'rgba(0, 0, 0, 0.85)', // Increased opacity for better readability
+        primary: '#F9C74F', // Softer, golden-yellow for primary color
+        secondary: '#3A5BA0', // Muted Pokémon blue
+        lightBackground: '#FAFAFC', // Softer light background
+        darkBackground: '#121212', // True dark for dark mode background
+        darkText: '#E0E0E0', // Softer white for dark mode text
+        lightText: '#333333', // Keeps readability for light mode
+        disabledGray: '#c0c4cc', // Slightly softer disabled color
+        'pokeball-red': '#D7263D', // Muted red for Pokéball
         'pokeball-white': '#FFFFFF',
-        'pokeball-black': '#2A2A2A',
-        'pokemon-yellow': '#FFCB05',
-        'pokemon-blue': '#3B4CCA',
-        'grass-green': '#6DAA3C',
-        'fire-red': '#FF4500',
-        'water-blue': '#1E90FF',
-        'dark-purple': '#4B0082',
-        'electric-yellow': '#FFDD00',
+        'pokeball-black': '#1F1F1F', // Darker black for contrast
+        'pokemon-yellow': '#F9C74F', // Softer Pokémon yellow
+        'pokemon-blue': '#3A5BA0', // Softer Pokémon blue
+        'grass-green': '#77C545', // Softer green for grass type
+        'fire-red': '#E63946', // More balanced red for fire type
+        'water-blue': '#457B9D', // Muted blue for water type
+        'dark-purple': '#5D3B90', // Softer purple for dark type
+        'electric-yellow': '#F1C40F', // Softer electric yellow
       },
       fontFamily: {
         sans: ['Quicksand', 'sans-serif'], // Set Quicksand as the default sans font

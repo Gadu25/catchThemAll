@@ -1,5 +1,5 @@
 <template>
-  <div class="scene scene--card">
+  <div v-if="!isPageLoading" class="scene scene--card">
     <div class="card my-5 xl:mx-32 lg:mx-20 sm:mx-4 mx-2 border shadow-md rounded-lg bg-card-light dark:bg-card-dark" :class="isFlipped ? 'is-flipped':'cursor-pointer'" @click="finishShowOff()">
       <div class="card__face card__face--front">
         <div class="show-off " :class="!isShowingOff ? 'done' : ''">
@@ -21,11 +21,17 @@
           <div class="flex justify-center align-center w-full h-full">
             <img class="animate-upDown" :src="pokemon.sprites?.other['official-artwork'].front_default" :alt="pokemon+'-image'"/>
           </div>
-          <div class="text-start text-pokeball-black dark:text-pokeball-white text-md">
-            <h1 class="first-letter:uppercase">{{ pokemon.name }}</h1>
-            <!-- <p class="text-sm">{{ filteredFlavorText(species.flavor_text_entries[0].flavor_text) }}</p> -->
+          <div class="text-start text-pokeball-black dark:text-pokeball-white">
+            <div class="flex justify-start mb-2 align-center">
+              <h1 class="first-letter:uppercase text-4xl font-bold">{{ pokemon.name }}</h1>
+              <div class="my-auto mx-3 text-gray-500 text-xl cursor-pointer hover:scale-105 hover:text-gray-400 transition-all" @click="playCry()">
+                <i class="fa-solid fa-volume-high"></i>
+              </div>
+            </div>
+            <p class="">{{ filteredFlavorText(species?.flavor_text_entries[0]?.flavor_text) }}</p>
+            <PokemonTypeList :pokemonTypes="pokemon.types" :isShowTitle="false"/>
             <!-- <templates v-for="type in pokemon.types">
-              <p>{{ type }}</p>
+              <PokemonTypeCard :name="type.type.name" :color="pokemonColor(type.type.name)" :badge="pokemonTypeBadge(type.type.name)"/>
             </templates> -->
           </div>
         </div>
@@ -38,15 +44,21 @@
 import { usePokemonStore } from '~/store/pokemon';
 import { useSpeciesStore } from '~/store/species';
 import { mapState, mapActions } from 'pinia';
+import PokemonTypeCard from '~/components/pokemontypecard.vue';
+import PokemonTypeList from '~/layouts/pokemontypelist.vue';
+import pokemonTypeClass from '~/data/pokemonTypeClass';
 
 export default {
   name: 'pokemon-id',
   data() {
     return {
       isShowingOff: true,
-      isFlipped: false
+      isFlipped: false,
+      isPageLoading: true,
+      colors: pokemonTypeClass
     }
   },
+  components: { PokemonTypeCard, PokemonTypeList },
   computed: {
     ...mapState(usePokemonStore, ['pokemon', 'loading', 'error']),
     ...mapState(useSpeciesStore, ['species', 'speciesLoading', 'speciesError'])
@@ -54,9 +66,11 @@ export default {
   methods: {
     ...mapActions(usePokemonStore, ['fetchPokemon']),
     ...mapActions( useSpeciesStore, ['fetchSpecies']),
-    async handleFetch() {
-      await this.fetchPokemon(this.$route.params.id);
-      await this.fetchSpecies(this.$route.params.id);
+    handleFetch() {
+      this.isPageLoading = true
+      this.fetchPokemon(this.$route.params.id);
+      this.fetchSpecies(this.$route.params.id);
+      this.isPageLoading = false
     },
     playCry() {
       const audio = new Audio(this.pokemon.cries.latest);
@@ -76,7 +90,16 @@ export default {
       }
     },
     filteredFlavorText(str){
-      return str.replace(/[^\w\s]/g, '').replace(/\n/g, '')
+      return this.isPageLoading ? '' : str.replace(/\n/g, ' ').replace(/\f/g, ' ')
+      // return str
+    },
+    pokemonColor(typeName) {
+        const colorObj = this.colors.find((color) => color.name === typeName);
+        return colorObj ? colorObj.color : 'bg-gray-300';
+    },
+    pokemonTypeBadge(typeName){
+        const typeObj = this.colors.find((color) => color.name === typeName);
+        return typeObj.icon;
     },
     delay(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
@@ -91,7 +114,7 @@ export default {
 </script>
 <style lang="scss" scoped>
 
-.scene {
+.scene { 
   display: inline-block;
   width: 100%;
   height: 100%;
@@ -109,13 +132,10 @@ export default {
     }
 
     .card__face {
-      position: absolute;
-      width: 100%;
-      height: 100%;
+      // position: absolute;
+      // width: 100%;
+      // height: 100%;
       color: white;
-      text-align: center;
-      font-weight: bold;
-      font-size: 40px;
       backface-visibility: hidden;
 
         .show-off {
