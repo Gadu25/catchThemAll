@@ -19,7 +19,7 @@
         </template>
       </div>
       <div class="card__face card__face--back">
-        <div class="flex flex-row-reverse justify-between p-5">
+        <div class="flex lg:flex-row-reverse justify-between p-5 flex-col">
           <div class="flex justify-center align-center w-full h-full">
             <img class="animate-upDown" :src="pokemon.sprites?.other['official-artwork'].front_default" :alt="pokemon+'-image'"/>
           </div>
