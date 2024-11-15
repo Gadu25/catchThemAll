@@ -9,7 +9,7 @@ export const usePokemonsStore = defineStore('pokemons', () => {
   const error = ref(null);
 
   // Fetch function with Lodash to limit API calls (e.g., throttling or debouncing)
-  const fetchPokemons = _.debounce(async (url='https://pokeapi.co/api/v2/pokemon?limit=12') => {
+  const fetchPokemons = _.debounce(async (url='https://pokeapi.co/api/v2/pokemon?limit=15') => {
     loading.value = true;
     error.value = null;
     try {

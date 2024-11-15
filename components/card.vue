@@ -1,5 +1,5 @@
 <template>
-    <div v-if="!loading" class="card w-full p-5 border rounded-lg flex justify-between cursor-pointer hover:shadow bg-card-light dark:bg-card-dark"
+    <div v-if="!loading" class="card w-full h-full p-5 border rounded-lg flex justify-between cursor-pointer hover:shadow bg-card-light dark:bg-card-dark"
         :class="cardClicked ? 'clicked' : ''" @click="clickCard(pokemonData.name)">
         <img class="pokemon w-3/6" :src="pokemonImage" :alt="name + '-image'" />
         <div>

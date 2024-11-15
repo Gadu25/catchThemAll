@@ -3,11 +3,13 @@
         <template v-if="!loading">
             <div class="flex flex-wrap" v-if="!loading">
                 <template v-for="pokemon in pokemons.results">
-                    <div class="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 p-2">
+                    <div class="w-full sm:w-1/2 lg:w-1/3 xl:w-1/5 p-2">
                         <Card :name="pokemon.name" :url="pokemon.url"/>
                     </div>
                 </template>
             </div>
+
+            <!-- nav -->
             <div class="flex justify-end">
                 <div class="flex justify-center">
                     <div v-if="pokemons.previous != null" class="border rounded me-2 p-3 cursor-pointer hover:bg-pokemon-blue hover:text-pokeball-white" @click="paginatePrev()">
