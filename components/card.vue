@@ -12,7 +12,7 @@
         </div>
         <div class="pokeball"><img src='~/assets/svg/pokeball.svg' alt='pokeball' /></div>
     </div>
-    <div v-else class="p-5 border rounded-lg flex justify-center w-full h-56 align-center">
+    <div v-else class="p-5 border rounded-lg flex justify-center w-full h-48 align-center">
         <div class="m-20">
             <i class="fa-solid fa-spinner fa-spin"></i>
         </div>
