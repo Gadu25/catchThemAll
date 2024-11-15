@@ -7,23 +7,23 @@
             <div class="pokeball"><img src='~/assets/svg/pokeball.svg' alt='pokeball' /></div>
             <div class="pokemon" v-if="!loading" @click="playCry()">
               <div class="container">
-                <img :src="pokemon.sprites?.other.showdown.front_default" />
+                <img :src="pokemon.sprites?.other.showdown.front_default"/>
                 <div class="pokemon-ground">
                 </div>
               </div>
             </div>
           </div>
-          <div class="dialogue-box" :class="!isShowingOff ? 'done' : ''">
+          <div class="dialogue-box border-4 border-card-dark dark:border-card-light" :class="!isShowingOff ? 'done' : ''">
             <div class="text">Amazing! <span class="first-letter:uppercase">{{pokemon.name}}</span> was successfully caught!</div>
           </div>
         </template>
       </div>
       <div class="card__face card__face--back">
         <div class="flex lg:flex-row-reverse justify-between p-5 flex-col">
-          <div class="flex justify-center align-center w-full h-full">
+          <div class="flex flex-1 justify-center align-center w-full h-full">
             <img class="animate-upDown" :src="pokemon.sprites?.other['official-artwork'].front_default" :alt="pokemon+'-image'"/>
           </div>
-          <div class="text-start text-pokeball-black dark:text-pokeball-white">
+          <div class="flex-1 text-start text-pokeball-black dark:text-pokeball-white">
             <div class="flex justify-start mb-2 align-center">
               <h1 class="first-letter:uppercase text-4xl font-bold">{{ pokemon.name }}</h1>
               <div class="my-auto mx-3 text-gray-500 text-xl cursor-pointer hover:scale-105 hover:text-gray-400 transition-all" @click="playCry()">
@@ -32,6 +32,46 @@
             </div>
             <p class="">{{ filteredFlavorText(species?.flavor_text_entries[0]?.flavor_text) }}</p>
             <PokemonTypeList :pokemonTypes="pokemon.types" :isShowTitle="false" :isCentered="false"/>
+            <table class="table-auto w-full leading-10">
+              <tbody>
+                <tr class="border-b">
+                  <td>Pokedex No.</td>
+                  <td>#{{ species?.pokedex_numbers[0].entry_number }}</td>
+                </tr>
+                <tr class="border-b">
+                  <td>Introduced</td>
+                  <td>{{ species?.generation.name }}</td>
+                </tr>
+                <!-- <tr class="border-b">
+                  <td>Category</td>
+                  <td>value</td>
+                </tr> -->
+                <tr class="border-b">
+                  <td>Weight</td>
+                  <td>{{ pokemon.weight }}</td>
+                </tr>
+                <tr class="border-b">
+                  <td>Height</td>
+                  <td>{{ pokemon.height }}</td>
+                </tr>
+                <tr class="border-b">
+                  <td>Abilities</td>
+                  <td>
+                    <template v-for="(ability, index) in pokemon.abilities">
+                      <p>{{ index+1 }}. {{ ability.ability.name }}</p>
+                    </template>
+                  </td>
+                </tr>
+                <tr class="border-b">
+                  <td>Shape</td>
+                  <td>{{ species?.shape.name }}</td>
+                </tr>
+                <tr class="border-b">
+                  <td>Color</td>
+                  <td>{{ species?.color.name }}</td>
+                </tr>
+              </tbody>
+            </table>
           </div>
         </div>
       </div>
@@ -224,7 +264,7 @@ export default {
           width: $box-width;
           height: $box-height;
           background-color: $box-bg-color;
-          border: $box-border-width solid $box-border-color;
+          // border: $box-border-width solid $box-border-color;
           padding: 10px;
           font-family: $font-family;
           color: $text-color;
@@ -377,7 +417,7 @@ $bounce-height: 20vh;
   }
 
   100% {
-    transform: translateY(calc($screen-center - 10px)) scale(1);
+    transform: translateY(calc($screen-center - 10px)) scale(1.2);
     opacity: 1;
   }
 }

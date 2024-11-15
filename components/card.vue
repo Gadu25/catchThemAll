@@ -100,7 +100,6 @@ export default {
 <style lang="scss" scoped>
 .card {
     position: relative;
-
     &:hover {
         animation: jumpUp .2s linear;
 
