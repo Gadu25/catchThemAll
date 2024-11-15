@@ -2,7 +2,7 @@
   <div v-if="!isPageLoading" class="scene scene--card">
     <div class="card my-5 xl:mx-32 lg:mx-20 sm:mx-4 mx-2 border rounded-lg bg-card-light dark:bg-card-dark" :class="isFlipped ? 'is-flipped':'cursor-pointer'" @click="finishShowOff()">
       <div class="card__face card__face--front">
-        <div class="show-off " :class="!isShowingOff ? 'done' : ''">
+        <div v-if="!isFlipped" class="show-off " :class="!isShowingOff ? 'done' : ''">
           <div class="pokeball"><img src='~/assets/svg/pokeball.svg' alt='pokeball' /></div>
           <div class="pokemon" v-if="!loading" @click="playCry()">
             <div class="container">
@@ -30,9 +30,6 @@
             </div>
             <p class="">{{ filteredFlavorText(species?.flavor_text_entries[0]?.flavor_text) }}</p>
             <PokemonTypeList :pokemonTypes="pokemon.types" :isShowTitle="false" :isCentered="false"/>
-            <!-- <templates v-for="type in pokemon.types">
-              <PokemonTypeCard :name="type.type.name" :color="pokemonColor(type.type.name)" :badge="pokemonTypeBadge(type.type.name)"/>
-            </templates> -->
           </div>
         </div>
       </div>
