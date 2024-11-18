@@ -50,10 +50,19 @@ module.exports = {
           '100%': {
               transform: 'translateY(0)'
           }
+        },
+        fadeInLoad: {
+          '0%': {
+            opacity: 0
+          },
+          '50%': {
+            opacity: 1
+          }
         }
       },
       animation: {
-        upDown: 'upDown 1.5s ease-in-out infinite', // define duration and looping here
+        upDown: 'upDown 1.5s ease-in-out infinite',
+        fadeInLoad: 'fadeInLoad .3s linear'
       },
     }
   },

@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div :style="'background-color:'+color" class="custom-type p-1 my-1 rounded text-white text-center shadow-md flex justify-between align-center">
+        <div :style="'background-color:'+color" class="custom-type p-1 my-1 rounded text-white text-center shadow-md flex justify-between align-center" :class="willJumpOnHover ? 'hover-animation':''">
             <img v-if="name != 'unknown'" class="h-7" :src="badge" :alt="name+'-badge'"/>
             <div class="mx-2">
                 <small>{{ name }}</small>
@@ -21,9 +21,13 @@
                 type: String,
                 default: 'unknown'
             },
-            badge: {
+            badge: { 
                 type: String,
                 default: null
+            },
+            willJumpOnHover: {
+                type: Boolean,
+                default: false
             }
         }
     }
@@ -32,8 +36,10 @@
 <style lang="scss" scoped>
     .custom-type {
         cursor: pointer;
-        &:hover {
-            animation: jumpUp 0.2s linear;
+        &.hover-animation {
+            &:hover {
+                animation: jumpUp 0.2s linear;
+            }
         }
     }
 

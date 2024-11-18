@@ -1,7 +1,7 @@
 <template>
     <div v-if="!loading" class="card w-full h-full p-5 border rounded-lg flex justify-between cursor-pointer hover:shadow bg-card-light dark:bg-card-dark"
         :class="cardClicked ? 'clicked' : ''" @click="clickCard(pokemonData.name)">
-        <img class="pokemon w-3/6" :src="pokemonImage" :alt="name + '-image'" />
+        <img @load="imageLoaded" ref="cardImage" class="pokemon w-3/6" :src="pokemonImage" :alt="name + '-image'" />
         <div>
             <p class="first-letter:uppercase"><strong>{{ name }}</strong></p>
             <div class="py-2">
@@ -59,6 +59,10 @@ export default {
                 this.loading = false;
             }
         },
+        imageLoaded(){
+            let cardImage = this.$refs.cardImage
+            cardImage.style.opacity = 1;
+        },
         delay(ms) {
             return new Promise(resolve => setTimeout(resolve, ms));
         },
@@ -111,6 +115,10 @@ export default {
         .pokeball {
             opacity: 1;
         }
+    }
+    .pokemon {
+        opacity: 0;
+        transition: 1s;
     }
 
     .pokeball {

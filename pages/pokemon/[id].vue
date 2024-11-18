@@ -7,7 +7,7 @@
             <div class="pokeball"><img src='~/assets/svg/pokeball.svg' alt='pokeball' /></div>
             <div class="pokemon" v-if="!loading" @click="playCry()">
               <div class="container">
-                <img :src="pokemon.sprites?.other.showdown.front_default"/>
+                <img @load="imageLoaded" ref="cardImage" :src="pokemon.sprites?.other.showdown.front_default"/>
                 <div class="pokemon-ground">
                 </div>
               </div>
@@ -127,6 +127,10 @@ export default {
       if(!this.isFlipped){
         this.isFlipped= !this.isFlipped
       }
+    },
+    imageLoaded(){
+      let cardImage = this.$refs.cardImage
+      cardImage.classList.add('animate-fadeInLoad')
     },
     filteredFlavorText(str){
       return this.isPageLoading ? '' : str.replace(/\n/g, ' ').replace(/\f/g, ' ')

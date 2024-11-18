@@ -1,10 +1,10 @@
 <template>
     <div>
-        <template v-if="!loading">
-            <div class="flex flex-wrap" v-if="!loading">
+        <!-- <template v-if="!loading"> -->
+            <div class="flex flex-wrap">
                 <template v-for="pokemon in pokemons.results">
                     <div class="w-full sm:w-1/2 lg:w-1/3 xl:w-1/5 p-2">
-                        <Card :name="pokemon.name" :url="pokemon.url"/>
+                        <Card ref="card" class="card-wrapper" :name="pokemon.name" :url="pokemon.url"/>
                     </div>
                 </template>
             </div>
@@ -20,12 +20,12 @@
                     </div>
                 </div>
             </div>
-        </template>
+        <!-- </template>
         <template v-else>
             <div class="flex justify-center align-items center w-full h-full overflow-hidden">
                 <img src="~/assets/gifs/pikachuRun.gif"/>
             </div>
-        </template>
+        </template> -->
     </div>
 </template>
 
@@ -42,8 +42,8 @@
         },
         methods: {
             ...mapActions(usePokemonsStore, ['fetchPokemons']),
-            async handleFetch() {
-                await this.fetchPokemons();
+            handleFetch() {
+                this.fetchPokemons();
             },
             paginatePrev(){
                 if(this.pokemons.previous){
@@ -55,7 +55,15 @@
                 if(this.pokemons.next){
                     this.fetchPokemons(this.pokemons.next);
                 }
-            }
+            },
+        },
+        watch: {
+        },
+        mounted() {
+            this.$nextTick(() => {
+                let cards = this.$refs.card
+                console.log(cards)
+            }) 
         },
         created() {
             if(isEmpty(this.pokemons)){
@@ -66,5 +74,7 @@
 </script>
 
 <style lang="scss" scoped>
-
+// .card-wrapper {
+//     opacity: 0;
+// }
 </style>

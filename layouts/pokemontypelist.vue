@@ -9,6 +9,7 @@
                         :name="typeClass.name ? typeClass.name : typeClass.type.name" 
                         :color="pokemonColor(typeClass.name ? typeClass.name : typeClass.type.name)" 
                         :badge="pokemonTypeBadge(typeClass.name ? typeClass.name : typeClass.type.name)"
+                        :willJumpOnHover="true"
                     />
                 </div>
             </template>
