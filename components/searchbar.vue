@@ -29,6 +29,11 @@
                 {{ pokemon.name }}
             </li>
         </ul>
+        <!-- <div class="w-full flex justify-center">
+            <div class="m-w-36">
+                <p>Random Pokemon</p>
+            </div>
+        </div> -->
     </label>
 </template>
 

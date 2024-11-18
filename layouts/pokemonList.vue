@@ -11,12 +11,12 @@
         <!-- nav -->
         <div class="flex justify-end">
             <div class="flex justify-center">
-                <div v-if="pokemons.previous != null" class="border rounded me-2 p-3 cursor-pointer hover:bg-pokemon-blue hover:text-pokeball-white" @click="paginatePrev()">
+                <button v-if="pokemons.previous != null" class="border rounded me-2 p-3 cursor-pointer hover:bg-pokemon-blue hover:text-pokeball-white" @click="paginatePrev()">
                     <i class="fa-solid" :class="loading ? 'fa-spinner fa-spin': 'fa-chevron-left'"></i>
-                </div>
-                <div v-if="pokemons.next != null" class="border rounded p-3 cursor-pointer hover:bg-pokemon-blue hover:text-pokeball-white" @click="paginateNext()">
+                </button>
+                <button v-if="pokemons.next != null" class="border rounded p-3 cursor-pointer hover:bg-pokemon-blue hover:text-pokeball-white" @click="paginateNext()">
                     <i class="fa-solid" :class="loading ? 'fa-spinner fa-spin': 'fa-chevron-right'"></i>
-                </div>
+                </button>
             </div>
         </div>
     </div>

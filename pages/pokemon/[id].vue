@@ -18,10 +18,23 @@
           </div>
         </template>
       </div>
-      <div class="card__face card__face--back">
-        <div class="flex lg:flex-row-reverse justify-between p-5 flex-col">
-          <div class="flex flex-1 justify-center align-center w-full h-full">
-            <img class="animate-upDown" :src="pokemon.sprites?.other['official-artwork'].front_default" :alt="pokemon+'-image'"/>
+      <div class="card__face card__face--back p-5">
+        <div class="flex lg:flex-row-reverse justify-between flex-col">
+          <div class="flex-col flex-1 justify-center align-center w-full h-full">
+            <div class="flex justify-center">
+              <img class="animate-upDown" :src="getPokemonImage(pokemon.sprites?.other['official-artwork'])" :alt="pokemon+'-image'"/>
+              <!-- <img v-else class="animate-upDown" :src="pokemon.sprites?.other['official-artwork'].front_shiny" :alt="pokemon+'-image'" /> -->
+            </div>
+            <div class="flex justify-center">
+              <div class="flex justify-center border rounded-md text-slate-950 dark:text-slate-50">
+                <div class="p-2 flex-1 rounded-tl rounded-bl border-r transition-all" :class="type == 'normal' ? 'bg-pokemon-blue text-darkText': 'cursor-pointer'" @click="type='normal'">
+                  <p>Normal</p>
+                </div>
+                <div class="p-2 flex-1 rounded-tr rounded-br transition-all" :class="type == 'shiny' ? 'bg-pokemon-blue text-darkText': 'cursor-pointer'" @click="type='shiny'">
+                  <p>Shiny</p>
+                </div>
+              </div>
+            </div>
           </div>
           <div class="flex-1 text-start text-pokeball-black dark:text-pokeball-white">
             <div class="flex justify-start mb-2 align-center">
@@ -74,6 +87,12 @@
             </table>
           </div>
         </div>
+        <div class="w-full bg-pink my-3">
+          <h3 class="text-2xl">Base Stats</h3>
+          <template v-for="stat in pokemon.stats">
+            
+          </template>
+        </div>
       </div>
     </div>
   </div>
@@ -94,7 +113,8 @@ export default {
       isShowingOff: true,
       isFlipped: false,
       isPageLoading: true,
-      colors: pokemonTypeClass
+      colors: pokemonTypeClass,
+      type: 'normal'
     }
   },
   components: { PokemonTypeCard, PokemonTypeList },
@@ -110,6 +130,9 @@ export default {
       this.fetchPokemon(this.$route.params.id);
       this.fetchSpecies(this.$route.params.id);
       this.isPageLoading = false
+    },
+    getPokemonImage(image){
+      return this.type == 'normal' ? image.front_default : image.front_shiny
     },
     playCry() {
       const audio = new Audio(this.pokemon.cries.latest);
