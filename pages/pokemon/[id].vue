@@ -13,8 +13,8 @@
               </div>
             </div>
           </div>
-          <div class="dialogue-box border-4 border-card-dark dark:border-card-light" :class="!isShowingOff ? 'done' : ''">
-            <div class="text">Amazing! <span class="first-letter:uppercase">{{pokemon.name}}</span> was successfully caught!</div>
+          <div v-if="!loading" class="dialogue-box border-4 border-card-dark dark:border-card-light" :class="!isShowingOff ? 'done' : ''">
+            <div class="text">{{ getRandomMessage() }}</div>
           </div>
         </template>
       </div>
@@ -130,7 +130,29 @@ export default {
       isFlipped: false,
       isPageLoading: true,
       colors: pokemonTypeClass,
-      type: 'normal'
+      type: 'normal',
+      pokemonMessages: [
+        "A new Pokémon, {{pokemonName}}, has joined your journey!",
+        "Looks like you’ve found a rare one, {{pokemonName}}!",
+        "The adventure continues with your new ally, {{pokemonName}}!",
+        "What a find! {{pokemonName}} awaits you!",
+        "Another Pokémon discovered—what’s next for {{pokemonName}}?",
+        "Your team just got stronger with {{pokemonName}}!",
+        "{{pokemonName}} is ready for the next challenge!",
+        "A new Pokémon, {{pokemonName}}, has appeared, ready for adventure!",
+        "A wild Pokémon, {{pokemonName}}, has caught your attention!",
+        "Looks like you’ve encountered something special, {{pokemonName}}!",
+        "A new companion, {{pokemonName}}, has arrived on your journey!",
+        "{{pokemonName}} is ready to join the team!",
+        "A new ally, {{pokemonName}}, is here to help you out!",
+        "It’s time to make a new friend, {{pokemonName}}!",
+        "Something exciting has appeared—{{pokemonName}}!",
+        "You’ve found something worth your attention—{{pokemonName}}!",
+        "A new Pokémon, {{pokemonName}}, is ready for action!",
+        "Looks like a new adventure awaits with {{pokemonName}}!",
+        "The path ahead just got more interesting with {{pokemonName}}!",
+        "A new chapter begins with {{pokemonName}}!"
+      ]
     }
   },
   components: { PokemonTypeCard, PokemonTypeList },
@@ -200,6 +222,10 @@ export default {
     pokemonTypeBadge(typeName){
         const typeObj = this.colors.find((color) => color.name === typeName);
         return typeObj.icon;
+    },
+    getRandomMessage(pokemonName) {
+      const randomIndex = Math.floor(Math.random() * this.pokemonMessages.length);
+      return this.pokemonMessages[randomIndex].replace("{{pokemonName}}", this.pokemon.name);
     },
     delay(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
