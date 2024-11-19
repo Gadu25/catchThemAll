@@ -96,10 +96,8 @@ export default {
             this.handleFetch()
         },
         pokemonData(newVal, oldVal){
-            console.log(newVal)
             this.$nextTick(() => {
                 const image = this.$refs.cardImage;
-                console.log(image)
 
                 // Check if the image is already loaded
                 if (image.complete && image.naturalWidth > 0 && image.naturalHeight > 0) {
