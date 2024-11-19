@@ -23,10 +23,9 @@
           <div class="flex-col flex-1 justify-center align-center w-full h-full">
             <div class="flex justify-center">
               <img class="animate-upDown" :src="getPokemonImage(pokemon.sprites?.other['official-artwork'])" :alt="pokemon+'-image'"/>
-              <!-- <img v-else class="animate-upDown" :src="pokemon.sprites?.other['official-artwork'].front_shiny" :alt="pokemon+'-image'" /> -->
             </div>
             <div class="flex justify-center">
-              <div class="flex justify-center border rounded-md text-slate-950 dark:text-slate-50">
+              <div class="flex justify-center border rounded-md text-slate-950 dark:text-slate-50 mb-4">
                 <div class="p-2 flex-1 rounded-tl rounded-bl border-r transition-all" :class="type == 'normal' ? 'bg-pokemon-blue text-darkText': 'cursor-pointer'" @click="type='normal'">
                   <p>Normal</p>
                 </div>
@@ -38,7 +37,7 @@
           </div>
           <div class="flex-1 text-start text-pokeball-black dark:text-pokeball-white">
             <div class="flex justify-start mb-2 align-center">
-              <h1 class="first-letter:uppercase text-7xl font-bold">{{ pokemon.name }}</h1>
+              <h1 class="first-letter:uppercase text-4xl lg:text-7xl font-bold">{{ pokemon.name }}</h1>
               <div class="my-auto mx-3 text-gray-500 text-xl cursor-pointer hover:scale-105 hover:text-gray-400 transition-all" @click="playCry()">
                 <i class="fa-solid fa-volume-high"></i>
               </div>
@@ -87,11 +86,28 @@
             </table>
           </div>
         </div>
-        <div class="w-full bg-pink my-3">
+        <div class="w-full my-3 text-slate-950 dark:text-slate-50">
           <h3 class="text-2xl">Base Stats</h3>
-          <template v-for="stat in pokemon.stats">
-            
-          </template>
+          <table class="table-auto w-full leading-10">
+            <template v-for="stat in pokemon.stats">
+              <tr>
+                <td class=" px-2">{{ stat.stat.name }}</td>
+                <td class=" px-2">{{ stat.base_stat }}</td>
+                <td class="w-1/2 px-2">
+                  <div class="w-full bg-gray-300 h-6 rounded-full w-full">
+                    <div class="bg-blue-500 h-full rounded-full" :style="'width:'+getStatPercentage(stat.stat.name, stat.base_stat)+'%'"></div>
+                  </div>
+                </td>
+                <td class=" px-2">{{ getMaxStat(stat.stat.name, stat.base_stat) }}</td>
+              </tr>
+            </template>
+            <tr>
+              <td class=" px-2">TOTAL</td>
+              <td class=" px-2">{{ getTotalStat() }}</td>
+              <td class=" px-2"></td>
+              <td class=" px-2">Max</td>
+            </tr>
+          </table>
         </div>
       </div>
     </div>
@@ -149,6 +165,24 @@ export default {
     finishShowOff(){
       if(!this.isFlipped){
         this.isFlipped= !this.isFlipped
+      }
+    },
+    getTotalStat(){
+      let total = 0
+      for(let value of this.pokemon.stats){
+        total += value.base_stat
+      }
+      return total
+    },
+    getStatPercentage(name, value){
+      let maxStat = this.getMaxStat(name, value)
+      return (value/maxStat) * 100
+    },
+    getMaxStat(name, value){
+      if(name == 'hp') {
+        return value * 2 + 204
+      }else {
+        return Math.floor((value * 2 +99) * 1.1)
       }
     },
     imageLoaded(){
