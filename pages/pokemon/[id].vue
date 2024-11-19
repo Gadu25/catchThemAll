@@ -167,6 +167,7 @@ export default {
       this.isPageLoading = true
       this.fetchPokemon(this.$route.params.id);
       this.fetchSpecies(this.$route.params.id);
+      this.initialCry()
       this.isPageLoading = false
     },
     getPokemonImage(image){
@@ -233,7 +234,6 @@ export default {
   },
   mounted() {
     this.handleFetch()
-    this.initialCry()
     this.transition()
   }
 }
@@ -258,9 +258,6 @@ export default {
     }
 
     .card__face {
-      // position: absolute;
-      // width: 100%;
-      // height: 100%;
       color: white;
       backface-visibility: hidden;
 
@@ -269,27 +266,6 @@ export default {
           display: flex;
           justify-content: center;
           align-items: center;
-
-          &.done {
-            // .pokeball {
-            //   opacity: 0;
-            //   height: 0;
-            // }
-            // .pokemon {
-            //   .container {
-            //     opacity: 0;
-            //     height: 0;
-            //     image {
-            //       height: 0;
-            //       opacity: 0;
-            //     }
-            //     .pokemon-ground {
-            //       height: 0;
-            //       opacity: 0;
-            //     }
-            //   }
-            // }
-          }
 
           .pokeball {
             position: absolute;
