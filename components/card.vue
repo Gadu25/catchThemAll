@@ -1,21 +1,17 @@
 <template>
-    <div v-if="!loading" class="card w-full h-full p-5 border rounded-lg flex justify-between cursor-pointer hover:shadow bg-card-light dark:bg-card-dark"
+    <div class="card w-full h-full p-5 border rounded-lg flex justify-between cursor-pointer hover:shadow bg-card-light dark:bg-card-dark"
         :class="cardClicked ? 'clicked' : ''" @click="clickCard(pokemonData.name)">
-        <img @load="imageLoaded" ref="cardImage" class="pokemon w-3/6" :src="pokemonImage" :alt="name + '-image'" />
-        <div>
+        <img v-if="!imageIsLoaded" class="pokemon-egg w-3/6 animate-upDown" src="~/assets/images/pokemonEgg.png" :alt="name + '-image'" />
+        <img v-if="!loading" @load="imageLoaded" ref="cardImage" class="pokemon w-3/6" :src="pokemonImage" :alt="name + '-image'" :class="!imageIsLoaded ? 'position-absolute':''" />
+        <div v-if="imageIsLoaded">
             <p class="first-letter:uppercase"><strong>{{ name }}</strong></p>
-            <div class="py-2">
+            <div v-if="!loading" class="py-2">
                 <template v-for="type in pokemonTypes">
                     <PokemonTypeCard :name="type.type.name" :color="pokemonColor(type.type.name)" :badge="pokemonTypeBadge(type.type.name)"/>
                 </template>
             </div>
         </div>
         <div class="pokeball"><img src='~/assets/svg/pokeball.svg' alt='pokeball' /></div>
-    </div>
-    <div v-else class="p-5 border rounded-lg flex justify-center w-full h-48 align-center">
-        <div class="m-20">
-            <i class="fa-solid fa-spinner fa-spin"></i>
-        </div>
     </div>
 </template>
 
@@ -33,6 +29,7 @@ export default {
             error: null,
             pokemonData: null,
             cardClicked: false,
+            imageIsLoaded: false,
         }
     },
     components: {
@@ -95,8 +92,30 @@ export default {
     },
     watch: {
         url(newValue, oldValue) {
+            this.imageIsLoaded = false
             this.handleFetch()
         },
+        pokemonData(newVal, oldVal){
+            console.log(newVal)
+            this.$nextTick(() => {
+                const image = this.$refs.cardImage;
+                console.log(image)
+
+                // Check if the image is already loaded
+                if (image.complete && image.naturalWidth > 0 && image.naturalHeight > 0) {
+                    this.imageIsLoaded = true
+                } else {
+                // Wait for the image to load
+                image.onload = () => {
+                    this.imageIsLoaded = true
+                };
+
+                image.onerror = () => {
+                    this.imageIsLoaded = false
+                };
+                }
+            })
+        }
     }
 }
 </script>
@@ -118,7 +137,10 @@ export default {
     }
     .pokemon {
         opacity: 0;
-        transition: 1s;
+        transition: .3s;
+    }
+    .pokemon-egg {
+        scale: .5;
     }
 
     .pokeball {
