@@ -37,7 +37,7 @@
           </div>
           <div class="flex-1 text-start text-pokeball-black dark:text-pokeball-white">
             <div class="flex justify-start mb-2 align-center">
-              <h1 class="first-letter:uppercase text-4xl lg:text-7xl font-bold">{{ pokemon.name }}</h1>
+              <h1 class="first-letter:uppercase text-4xl md:text-7xl font-bold">{{ pokemon.name }}</h1>
               <div class="my-auto mx-3 text-gray-500 text-xl cursor-pointer hover:scale-105 hover:text-gray-400 transition-all" @click="playCry()">
                 <i class="fa-solid fa-volume-high"></i>
               </div>
@@ -320,7 +320,7 @@ export default {
         // The dialogue box styling
         .dialogue-box {
           position: absolute;
-          bottom: 10vh;
+          top: 60vh;
           left: 10%;
           width: $box-width;
           height: $box-height;
