@@ -1,7 +1,7 @@
 <template>
     <div class="card w-full h-full p-5 border rounded-lg flex justify-between cursor-pointer hover:shadow bg-card-light dark:bg-card-dark"
         :class="cardClicked ? 'clicked' : ''" @click="clickCard(pokemonData.name)">
-        <img v-if="!imageIsLoaded" class="pokemon-egg w-3/6 animate-upDown" src="~/assets/images/pokemonEgg.png" :alt="name + '-image'" />
+        <img v-if="!imageIsLoaded" class="pokemon-egg animate-upDown" src="~/assets/images/pokemonEgg.png" :alt="name + '-image'" />
         <img v-if="!loading" @load="imageLoaded" ref="cardImage" class="pokemon w-3/6" :src="pokemonImage" :alt="name + '-image'" :class="!imageIsLoaded ? 'position-absolute':''" />
         <div v-if="imageIsLoaded">
             <p class="first-letter:uppercase"><strong>{{ name }}</strong></p>
@@ -140,6 +140,7 @@ export default {
         transition: .3s;
     }
     .pokemon-egg {
+        width: 40.5%;
         scale: .5;
     }
 
