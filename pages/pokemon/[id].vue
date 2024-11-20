@@ -22,7 +22,16 @@
         <div class="flex lg:flex-row-reverse justify-between flex-col">
           <div class="flex-col flex-1 justify-center align-center w-full h-full">
             <div class="flex justify-center">
+            <div class="pokemon-image relative">
               <img class="animate-upDown" :src="getPokemonImage(pokemon.sprites?.other['official-artwork'])" :alt="pokemon+'-image'"/>
+              <template v-if="type == 'shiny'">
+                <div class="sparkle" style="top: 10%; left: 20%; animation-delay: .5s"></div>
+                <div class="sparkle" style="top: 70%; left: 20%; animation-delay: 1s"></div>
+                <div class="sparkle" style="top: 50%; left: 80%; animation-delay: 1.5s"></div>
+                <div class="sparkle" style="top: 20%; left: 60%; animation-delay: .2s"></div>
+                <div class="sparkle" style="top: 90%; left: 50%; animation-delay: .8s"></div>
+              </template>
+            </div>
             </div>
             <div class="flex justify-center">
               <div class="flex justify-center border rounded-md text-slate-950 dark:text-slate-50 mb-4">
@@ -398,6 +407,16 @@ export default {
   }
 }
 
+.sparkle {
+  position: absolute;
+  width: 20px; /* Size of the sparkle */
+  height: 20px;
+  background: radial-gradient(circle, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0) 70%);
+  border-radius: 50%;
+  animation: sparkle-animation 2s infinite;
+  opacity: 0; /* Start hidden */
+}
+
 
 $screen-center: 30vh;
 $bounce-height: 20vh;
@@ -505,6 +524,21 @@ $bounce-height: 20vh;
   100% {
     transform: scale(1);
     opacity: 1;
+  }
+}
+
+@keyframes sparkle-animation {
+  0% {
+    transform: scale(0);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.5);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
   }
 }
 </style>
