@@ -10,6 +10,7 @@
             type="text" 
             name="search" 
             v-model="searchQuery"
+            @input="updateFilteredPokemons"
             @keydown.up.prevent="navigateResults('up')"
             @keydown.down.prevent="navigateResults('down')"
             @keydown.enter.prevent="selectResult"
@@ -29,11 +30,6 @@
                 {{ pokemon.name }}
             </li>
         </ul>
-        <!-- <div class="w-full flex justify-center">
-            <div class="m-w-36">
-                <p>Random Pokemon</p>
-            </div>
-        </div> -->
     </label>
 </template>
 
@@ -62,6 +58,10 @@ export default {
         },
         handleFetch() {
             this.fetchAllPokemons();
+        },
+        updateFilteredPokemons() {
+            this.filteredPokemons = this.searchPokemons(this.searchQuery);
+            this.selectedIndex = 0;
         },
         navigateResults(direction) {
             if (direction === 'down') {
