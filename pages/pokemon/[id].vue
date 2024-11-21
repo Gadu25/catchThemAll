@@ -2,7 +2,7 @@
   <div v-if="!isPageLoading" class="scene scene--card">
     <div class="card my-5 xl:mx-32 lg:mx-20 sm:mx-4 mx-2 bg-card-light dark:bg-card-dark rounded-lg" :class="isFlipped ? 'is-flipped':'cursor-pointer border'" @click="finishShowOff()">
       <div class="card__face card__face--front">
-          <div class="show-off" :class="!isShowingOff ? 'done' : ''">
+          <div class="show-off" :class="isFlipped ? 'done' : ''">
             <div class="pokeball"><img src='~/assets/svg/pokeball.svg' alt='pokeball' /></div>
             <div class="pokemon" v-if="!loading" @click="playCry()">
               <div class="container">
@@ -301,6 +301,11 @@ export default {
           display: flex;
           justify-content: center;
           align-items: center;
+          transition: .3s;
+          
+          &.done {
+            opacity: 0;
+          }
 
           .pokeball {
             position: absolute;
