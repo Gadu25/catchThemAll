@@ -14,7 +14,7 @@ module.exports = {
       colors: {
         // Light and Dark backgrounds
         lightBackground: '#FAFAFC',  // Subtle off-white for light mode
-        darkBackground: '#121212',  // Darker gray-black for dark mode
+        darkBackground: '#1E1E1E',  // Darker gray-black for dark mode
         darkText: '#E0E0E0',
         lightText: '#333333',
 
