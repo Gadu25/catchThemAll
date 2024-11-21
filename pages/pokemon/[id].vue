@@ -1,9 +1,8 @@
 <template>
   <div v-if="!isPageLoading" class="scene scene--card">
-    <div class="card my-5 xl:mx-32 lg:mx-20 sm:mx-4 mx-2 border rounded-lg bg-card-light dark:bg-card-dark" :class="isFlipped ? 'is-flipped':'cursor-pointer'" @click="finishShowOff()">
+    <div class="card my-5 xl:mx-32 lg:mx-20 sm:mx-4 mx-2 bg-card-light dark:bg-card-dark rounded-lg border" :class="isFlipped ? 'is-flipped':'cursor-pointer'" @click="finishShowOff()">
       <div class="card__face card__face--front">
-        <template v-if="!isFlipped">
-          <div class="show-off " :class="!isShowingOff ? 'done' : ''">
+          <div class="show-off" :class="!isShowingOff ? 'done' : ''">
             <div class="pokeball"><img src='~/assets/svg/pokeball.svg' alt='pokeball' /></div>
             <div class="pokemon" v-if="!loading" @click="playCry()">
               <div class="container">
@@ -16,107 +15,110 @@
           <div v-if="!loading" class="dialogue-box border-4 border-card-dark dark:border-card-light" :class="!isShowingOff ? 'done' : ''">
             <div class="text">{{ getRandomMessage() }}</div>
           </div>
-        </template>
       </div>
-      <div class="card__face card__face--back p-5">
-        <div class="flex lg:flex-row-reverse justify-between flex-col">
-          <div class="flex-col flex-1 justify-center align-center w-full h-full">
-            <div class="flex justify-center">
-            <div class="pokemon-image relative">
-              <img class="animate-upDown" :src="getPokemonImage(pokemon.sprites?.other['official-artwork'])" :alt="pokemon+'-image'"/>
-              <template v-if="type == 'shiny'">
-                <div class="sparkle" style="top: 10%; left: 20%; animation-delay: .5s"></div>
-                <div class="sparkle" style="top: 70%; left: 20%; animation-delay: 1s"></div>
-                <div class="sparkle" style="top: 50%; left: 80%; animation-delay: 1.5s"></div>
-                <div class="sparkle" style="top: 20%; left: 60%; animation-delay: .2s"></div>
-                <div class="sparkle" style="top: 90%; left: 50%; animation-delay: .8s"></div>
+      <div class="card__face card__face--back p-1 rounded-lg" :style="borderValue">
+        <div class="p-5 bg-card-light dark:bg-card-dark rounded-md">
+          <div class="flex lg:flex-row-reverse justify-between flex-col">
+            <div class="flex-col flex-1 justify-center align-center w-full h-full">
+              <div class="flex justify-center">
+              <div class="pokemon-image relative">
+                <img class="animate-upDown" :src="getPokemonImage(pokemon.sprites?.other['official-artwork'])" :alt="pokemon+'-image'"/>
+                <template v-if="type == 'shiny'">
+                  <div class="sparkle" style="top: 10%; left: 20%; animation-delay: .5s"></div>
+                  <div class="sparkle" style="top: 70%; left: 20%; animation-delay: 1s"></div>
+                  <div class="sparkle" style="top: 50%; left: 80%; animation-delay: 1.5s"></div>
+                  <div class="sparkle" style="top: 20%; left: 60%; animation-delay: .2s"></div>
+                  <div class="sparkle" style="top: 90%; left: 50%; animation-delay: .8s"></div>
+                </template>
+              </div>
+              </div>
+              <div class="flex justify-center">
+                <div class="flex justify-center border rounded-md text-slate-950 dark:text-slate-50 mb-4">
+                  <div class="p-2 flex-1 rounded-tl rounded-bl border-r transition-all" :class="type == 'normal' ? 'bg-pokemon-blue text-darkText': 'cursor-pointer'" @click="type='normal'">
+                    <p>Normal</p>
+                  </div>
+                  <div class="p-2 flex-1 rounded-tr rounded-br transition-all" :class="type == 'shiny' ? 'bg-pokemon-blue text-darkText': 'cursor-pointer'" @click="type='shiny'">
+                    <p>Shiny</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="flex-1 text-start text-pokeball-black dark:text-pokeball-white">
+              <div class="flex justify-start mb-2 align-center">
+                <h1 class="first-letter:uppercase text-4xl md:text-7xl font-bold">{{ pokemon.name }}</h1>
+                <div class="my-auto mx-3 text-gray-500 text-xl cursor-pointer hover:scale-105 hover:text-gray-400 transition-all" @click="playCry()">
+                  <i class="fa-solid fa-volume-high"></i>
+                </div>
+              </div>
+              <template v-if="fullyLoaded">
+                <p>{{ filteredFlavorText(species?.flavor_text_entries[0]?.flavor_text) }}</p>
+                <PokemonTypeList :pokemonTypes="pokemon.types" :isShowTitle="false" :isCentered="false"/>
+                <table class="table-auto w-full leading-10">
+                  <tbody>
+                    <tr class="border-b">
+                      <td>Pokedex No.</td>
+                      <td>#{{ species?.pokedex_numbers[0].entry_number }}</td>
+                    </tr>
+                    <tr class="border-b">
+                      <td>Introduced</td>
+                      <td>{{ species?.generation.name }}</td>
+                    </tr>
+                    <!-- <tr class="border-b">
+                      <td>Category</td>
+                      <td>value</td>
+                    </tr> -->
+                    <tr class="border-b">
+                      <td>Weight</td>
+                      <td>{{ pokemon.weight / 10 }} kg</td>
+                    </tr>
+                    <tr class="border-b">
+                      <td>Height</td>
+                      <td>{{ pokemon.height / 10 }} m</td>
+                    </tr>
+                    <tr class="border-b">
+                      <td>Abilities</td>
+                      <td>
+                        <template v-for="(ability, index) in pokemon.abilities">
+                          <p>{{ index+1 }}. {{ ability.ability.name }}</p>
+                        </template>
+                      </td>
+                    </tr>
+                    <tr class="border-b">
+                      <td>Shape</td>
+                      <td>{{ species?.shape.name }}</td>
+                    </tr>
+                    <tr class="border-b">
+                      <td>Color</td>
+                      <td>{{ species?.color.name }}</td>
+                    </tr>
+                  </tbody>
+                </table>
               </template>
             </div>
-            </div>
-            <div class="flex justify-center">
-              <div class="flex justify-center border rounded-md text-slate-950 dark:text-slate-50 mb-4">
-                <div class="p-2 flex-1 rounded-tl rounded-bl border-r transition-all" :class="type == 'normal' ? 'bg-pokemon-blue text-darkText': 'cursor-pointer'" @click="type='normal'">
-                  <p>Normal</p>
-                </div>
-                <div class="p-2 flex-1 rounded-tr rounded-br transition-all" :class="type == 'shiny' ? 'bg-pokemon-blue text-darkText': 'cursor-pointer'" @click="type='shiny'">
-                  <p>Shiny</p>
-                </div>
-              </div>
-            </div>
           </div>
-          <div class="flex-1 text-start text-pokeball-black dark:text-pokeball-white">
-            <div class="flex justify-start mb-2 align-center">
-              <h1 class="first-letter:uppercase text-4xl md:text-7xl font-bold">{{ pokemon.name }}</h1>
-              <div class="my-auto mx-3 text-gray-500 text-xl cursor-pointer hover:scale-105 hover:text-gray-400 transition-all" @click="playCry()">
-                <i class="fa-solid fa-volume-high"></i>
-              </div>
-            </div>
-            <p class="">{{ filteredFlavorText(species?.flavor_text_entries[0]?.flavor_text) }}</p>
-            <PokemonTypeList :pokemonTypes="pokemon.types" :isShowTitle="false" :isCentered="false"/>
+          <div class="w-full my-3 text-slate-950 dark:text-slate-50">
+            <h3 class="text-2xl">Base Stats</h3>
             <table class="table-auto w-full leading-10">
-              <tbody>
-                <tr class="border-b">
-                  <td>Pokedex No.</td>
-                  <td>#{{ species?.pokedex_numbers[0].entry_number }}</td>
-                </tr>
-                <tr class="border-b">
-                  <td>Introduced</td>
-                  <td>{{ species?.generation.name }}</td>
-                </tr>
-                <!-- <tr class="border-b">
-                  <td>Category</td>
-                  <td>value</td>
-                </tr> -->
-                <tr class="border-b">
-                  <td>Weight</td>
-                  <td>{{ pokemon.weight / 10 }} kg</td>
-                </tr>
-                <tr class="border-b">
-                  <td>Height</td>
-                  <td>{{ pokemon.height / 10 }} m</td>
-                </tr>
-                <tr class="border-b">
-                  <td>Abilities</td>
-                  <td>
-                    <template v-for="(ability, index) in pokemon.abilities">
-                      <p>{{ index+1 }}. {{ ability.ability.name }}</p>
-                    </template>
+              <template v-for="stat in pokemon.stats">
+                <tr>
+                  <td class=" px-2">{{ stat.stat.name }}</td>
+                  <td class=" px-2">{{ stat.base_stat }}</td>
+                  <td class="w-1/2 px-2">
+                    <div class="w-full bg-gray-300 h-6 rounded-full w-full">
+                      <div class="bg-blue-500 h-full rounded-full" :style="'width:'+getStatPercentage(stat.stat.name, stat.base_stat)+'%'"></div>
+                    </div>
                   </td>
+                  <td class=" px-2">{{ getMaxStat(stat.stat.name, stat.base_stat) }}</td>
                 </tr>
-                <tr class="border-b">
-                  <td>Shape</td>
-                  <td>{{ species?.shape.name }}</td>
-                </tr>
-                <tr class="border-b">
-                  <td>Color</td>
-                  <td>{{ species?.color.name }}</td>
-                </tr>
-              </tbody>
+              </template>
+              <tr>
+                <td class=" px-2">TOTAL</td>
+                <td class=" px-2">{{ getTotalStat() }}</td>
+                <td class=" px-2"></td>
+                <td class=" px-2">Max</td>
+              </tr>
             </table>
           </div>
-        </div>
-        <div class="w-full my-3 text-slate-950 dark:text-slate-50">
-          <h3 class="text-2xl">Base Stats</h3>
-          <table class="table-auto w-full leading-10">
-            <template v-for="stat in pokemon.stats">
-              <tr>
-                <td class=" px-2">{{ stat.stat.name }}</td>
-                <td class=" px-2">{{ stat.base_stat }}</td>
-                <td class="w-1/2 px-2">
-                  <div class="w-full bg-gray-300 h-6 rounded-full w-full">
-                    <div class="bg-blue-500 h-full rounded-full" :style="'width:'+getStatPercentage(stat.stat.name, stat.base_stat)+'%'"></div>
-                  </div>
-                </td>
-                <td class=" px-2">{{ getMaxStat(stat.stat.name, stat.base_stat) }}</td>
-              </tr>
-            </template>
-            <tr>
-              <td class=" px-2">TOTAL</td>
-              <td class=" px-2">{{ getTotalStat() }}</td>
-              <td class=" px-2"></td>
-              <td class=" px-2">Max</td>
-            </tr>
-          </table>
         </div>
       </div>
     </div>
@@ -161,7 +163,9 @@ export default {
         "Looks like a new adventure awaits with {{pokemonName}}!",
         "The path ahead just got more interesting with {{pokemonName}}!",
         "A new chapter begins with {{pokemonName}}!"
-      ]
+      ],
+      borderValue: 'background-color: transparent',
+      fullyLoaded: false
     }
   },
   components: { PokemonTypeCard, PokemonTypeList },
@@ -174,9 +178,7 @@ export default {
     ...mapActions( useSpeciesStore, ['fetchSpecies']),
     handleFetch() {
       this.isPageLoading = true
-      this.fetchPokemon(this.$route.params.id);
-      this.fetchSpecies(this.$route.params.id);
-      this.initialCry()
+      this.fetchPokemon(this.$route.params.id)
       this.isPageLoading = false
     },
     getPokemonImage(image){
@@ -233,13 +235,38 @@ export default {
         const typeObj = this.colors.find((color) => color.name === typeName);
         return typeObj.icon;
     },
-    getRandomMessage(pokemonName) {
+    getBorderGradient(){
+        if(this.pokemon?.types){
+            let result = 'linear-gradient(to right,'
+            if(this.pokemon.types.length > 1){
+                for(let type of this.pokemon?.types){
+                    let color = this.pokemonColor(type.type.name)+'69'
+                    let extension = type.type.name == this.pokemon.types[this.pokemon.types.length-1].type.name ? ' ':','
+                    result += (color+ extension)
+                }
+                this.borderValue = 'background-image: '+result+')'
+            }else {
+                this.borderValue = 'background-color: '+this.pokemonColor(this.pokemon.types[0].type.name)+'69'
+            }
+        }
+    },
+    getRandomMessage() {
       const randomIndex = Math.floor(Math.random() * this.pokemonMessages.length);
       return this.pokemonMessages[randomIndex].replace("{{pokemonName}}", this.pokemon.name);
     },
     delay(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
     },
+  },
+  watch: {
+      pokemon(newVal, oldVal){
+          this.$nextTick(() => {
+            this.fetchSpecies(this.$route.params.id);
+            this.initialCry()
+            this.getBorderGradient()
+            this.fullyLoaded = true
+          })
+      }
   },
   mounted() {
     this.handleFetch()
@@ -254,7 +281,6 @@ export default {
   width: 100%;
   height: 100%;
   perspective: 600px;
-
   .card {
     position: relative;
     min-height: 85vh;

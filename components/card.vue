@@ -1,17 +1,18 @@
 <template>
-    <div class="card w-full h-full p-5 border rounded-lg flex justify-between cursor-pointer hover:shadow bg-card-light dark:bg-card-dark"
-        :class="cardClicked ? 'clicked' : ''" @click="clickCard(pokemonData.name)">
-        <img v-if="!imageIsLoaded" class="pokemon-egg animate-upDown" src="~/assets/images/pokemonEgg.webp" :alt="name + '-image'" />
-        <img v-if="!loading" @load="imageLoaded" ref="cardImage" class="pokemon w-3/6" :src="pokemonImage" :alt="name + '-image'" :class="!imageIsLoaded ? 'position-absolute':''" />
-        <div v-if="imageIsLoaded">
-            <p class="first-letter:uppercase"><strong>{{ name }}</strong></p>
-            <div v-if="!loading" class="py-2">
-                <template v-for="type in pokemonTypes">
-                    <PokemonTypeCard :name="type.type.name" :color="pokemonColor(type.type.name)" :badge="pokemonTypeBadge(type.type.name)"/>
-                </template>
+    <div class="card rounded-lg" :style="borderValue+'; padding: 2px;'" :class="cardClicked ? 'clicked' : ''" @click="clickCard(pokemonData.name)">
+        <div class="w-full h-full p-5 rounded-md flex justify-between cursor-pointer hover:shadow bg-card-light dark:bg-card-dark">
+            <img v-if="!imageIsLoaded" class="pokemon-egg animate-upDown" src="~/assets/images/pokemonEgg.webp" :alt="name + '-image'" />
+            <img v-if="!loading" @load="imageLoaded" ref="cardImage" class="pokemon w-3/6" :src="pokemonImage" :alt="name + '-image'" :class="!imageIsLoaded ? 'position-absolute':''" />
+            <div v-if="imageIsLoaded">
+                <p class="first-letter:uppercase"><strong>{{ name }}</strong></p>
+                <div v-if="!loading" class="py-2">
+                    <template v-for="type in pokemonTypes">
+                        <PokemonTypeCard :name="type.type.name" :color="pokemonColor(type.type.name)" :badge="pokemonTypeBadge(type.type.name)"/>
+                    </template>
+                </div>
             </div>
+            <div class="pokeball"><img src='~/assets/svg/pokeball.svg' alt='pokeball' /></div>
         </div>
-        <div class="pokeball"><img src='~/assets/svg/pokeball.svg' alt='pokeball' /></div>
     </div>
 </template>
 
@@ -30,6 +31,7 @@ export default {
             pokemonData: null,
             cardClicked: false,
             imageIsLoaded: false,
+            borderValue: 'transparent'
         }
     },
     components: {
@@ -70,6 +72,22 @@ export default {
         pokemonTypeBadge(typeName){
             const typeObj = this.colors.find((color) => color.name === typeName);
             return typeObj.icon;
+        }
+        ,
+        getBorderGradient(){
+            if(this.pokemonData?.types){
+                let result = 'linear-gradient(to right top,'
+                if(this.pokemonData.types.length > 1){
+                    for(let type of this.pokemonData?.types){
+                        let color = this.pokemonColor(type.type.name)+'69'
+                        let extension = type.type.name == this.pokemonData.types[this.pokemonData.types.length-1].type.name ? ' ':','
+                        result += (color+ extension)
+                    }
+                    this.borderValue = 'background-image: '+result+')'
+                }else {
+                    this.borderValue = 'background-color: '+this.pokemonColor(this.pokemonData.types[0].type.name)+'69'
+                }
+            }
         },
         async clickCard(id) {
             this.cardClicked = true
@@ -112,6 +130,8 @@ export default {
                     this.imageIsLoaded = false
                 };
                 }
+
+                this.getBorderGradient()
             })
         }
     }
