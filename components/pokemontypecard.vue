@@ -1,7 +1,7 @@
 <template>
     <div>
         <div :style="'background-color:'+color" class="custom-type p-1 my-1 rounded text-white text-center shadow-md flex justify-between align-center" :class="willJumpOnHover ? 'hover-animation':''">
-            <img v-if="name != 'unknown'" class="h-7" :src="badge" :alt="name+'-badge'"/>
+            <img v-if="name != 'unknown'" class="h-6" :src="badge" :alt="name+'-badge'"/>
             <div class="mx-2">
                 <small>{{ name }}</small>
             </div>

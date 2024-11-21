@@ -189,7 +189,7 @@ export default {
       audio.play();
     },
     async initialCry() {
-      await this.delay(1400);
+      await this.delay(1000);
       this.playCry()
     },
     async transition() {
