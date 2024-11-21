@@ -240,13 +240,13 @@ export default {
             let result = 'linear-gradient(to right,'
             if(this.pokemon.types.length > 1){
                 for(let type of this.pokemon?.types){
-                    let color = this.pokemonColor(type.type.name)+'69'
+                    let color = this.pokemonColor(type.type.name)+'73'
                     let extension = type.type.name == this.pokemon.types[this.pokemon.types.length-1].type.name ? ' ':','
                     result += (color+ extension)
                 }
                 this.borderValue = 'background-image: '+result+')'
             }else {
-                this.borderValue = 'background-color: '+this.pokemonColor(this.pokemon.types[0].type.name)+'69'
+                this.borderValue = 'background-color: '+this.pokemonColor(this.pokemon.types[0].type.name)+'73'
             }
         }
     },

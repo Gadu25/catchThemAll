@@ -5,6 +5,7 @@
             <template v-for="typeClass in pokemonTypes">
                 <div class="me-3 my-1">
                     <PokemonTypeCard 
+                        :class="hasShadow?'shadow':''"
                         v-if="typeClass.name != 'unknown'"
                         :name="typeClass.name ? typeClass.name : typeClass.type.name" 
                         :color="pokemonColor(typeClass.name ? typeClass.name : typeClass.type.name)" 
@@ -51,6 +52,10 @@
             isCentered: {
                 type: Boolean,
                 default: true
+            },
+            hasShadow: {
+                type: Boolean,
+                default: false
             }
         }
     }
