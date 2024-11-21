@@ -25,7 +25,7 @@ module.exports = {
         primary: '#F9C74F',
         secondary: '#3A5BA0',
         disabledGray: '#c0c4cc',
-        'pokeball-red': '#D7263D',
+        'pokeball-red': '#D32F2F ',
         'pokeball-white': '#FFFFFF',
         'pokeball-black': '#1F1F1F', 
         'pokemon-yellow': '#F9C74F',

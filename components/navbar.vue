@@ -1,5 +1,5 @@
 <template>
-    <nav :class="isClose ? 'is-close':''" class="w-100 flex justify-between items-center px-5 bg-pokeball-red shadow-xl border-b-2 border-b-slate-950">
+    <nav :class="isClose ? 'is-close':''" class="w-100 flex justify-between items-center bg-pokeball-red shadow-xl border-b-2 border-b-slate-950 xl:px-32 lg:px-20 sm:px-10 px-4">
         <div>
             <NuxtLink to="/">
                 <img class="h-10" src="~/assets/images/catchthemall.png" alt="catch them all icon"/>
