@@ -64,7 +64,7 @@
                 height: 30vh;
                 width: 10vw;
                 background-color: #D32F2F;
-                top: 0vh;
+                top: 10vh;
                 left: 25vw;
                 border-radius: 25px;
                 transform: skew(15deg, 15deg);
@@ -76,7 +76,7 @@
                 height: 30vh;
                 width: 10vw;
                 background-color: #D32F2F;
-                top: 0vh;
+                top: 10vh;
                 left: 65vw;
                 border-radius: 25px;
                 transform: skew(345deg, 345deg);
