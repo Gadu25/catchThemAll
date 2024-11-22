@@ -20,6 +20,7 @@
 import axios from 'axios';
 import pokemonTypeClass from '~/data/pokemonTypeClass';
 import PokemonTypeCard from '~/components/pokemontypecard.vue'
+import { useCaughtPokemonStore } from '~/store/caughtpokemon';
 
 export default {
     name: 'Card',
@@ -43,7 +44,10 @@ export default {
         },
         pokemonTypes() {
             return this.pokemonData?.types
-        }
+        },
+        pokemonStore() {
+            return useCaughtPokemonStore();
+        },
     },
     methods: {
         async handleFetch() {
@@ -91,6 +95,7 @@ export default {
         },
         async clickCard(id) {
             this.cardClicked = true
+            this.pokemonStore.catchPokemon(this.name);
             await this.delay(950);
             this.$router.push({ name: 'pokemon-id', params: { id } });
         }
@@ -156,6 +161,9 @@ export default {
     .pokemon {
         opacity: 0;
         transition: .3s;
+        &.silhouette {
+            filter: brightness(0) saturate(100%);
+        }
     }
     .pokemon-egg {
         width: 40.5%;
