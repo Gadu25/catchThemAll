@@ -108,6 +108,7 @@
                       <div class="bg-blue-500 h-full rounded-full" :style="'width:'+getStatPercentage(stat.stat.name, stat.base_stat)+'%'"></div>
                     </div>
                   </td>
+                  <td class="px-2">{{ getMinStat(stat.stat.name, stat.base_stat) }}</td>
                   <td class=" px-2">{{ getMaxStat(stat.stat.name, stat.base_stat) }}</td>
                 </tr>
               </template>
@@ -115,6 +116,7 @@
                 <td class=" px-2">TOTAL</td>
                 <td class=" px-2">{{ getTotalStat() }}</td>
                 <td class=" px-2"></td>
+                <td class="px-2">Min</td>
                 <td class=" px-2">Max</td>
               </tr>
             </table>
@@ -211,6 +213,14 @@ export default {
     getStatPercentage(name, value){
       let maxStat = this.getMaxStat(name, value)
       return (value/maxStat) * 100
+    },
+    getMinStat(name, value){
+      if(name == 'hp') {
+        return Math.floor((value * 2 * 100) / 100) + 100 + 10;
+      }else {
+        const min = Math.floor((value * 2 * 100) / 100) + 5;
+        return Math.floor(min * 0.9)
+      }
     },
     getMaxStat(name, value){
       if(name == 'hp') {
