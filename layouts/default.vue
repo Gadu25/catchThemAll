@@ -74,7 +74,6 @@ export default {
 
 <style lang="scss" scoped>
 $circleArea: 12vh;
-
 .custom-main {
     scale: 1.5;
     transition: all .3s;
