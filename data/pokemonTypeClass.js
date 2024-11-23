@@ -109,11 +109,11 @@ export default [
         "color": "#FBCFE8",
         "icon": fairy
     },
-    { 
-        "name": "stellar", 
-        "color": "#818CF8",
-        "icon": stellar
-    },    
+    // { 
+    //     "name": "stellar", 
+    //     "color": "#818CF8",
+    //     "icon": stellar
+    // },    
     { 
         "name": "unknown", 
         "color": "#D1D5DB",

@@ -117,6 +117,7 @@ export default {
                 else {
                     this.twitching= false
                     this.isEscaped = true
+                    this.$emit('handleParentFunction');
                     await this.delay(2000);
                     this.cardClicked = false
                     this.isEscaped = false

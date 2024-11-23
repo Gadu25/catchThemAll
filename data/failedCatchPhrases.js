@@ -1,0 +1,22 @@
+export default [
+    "Don't worry! Even I missed a few throws when I started.",
+    "Whoa, that Pokémon’s got some moves! Let’s try again!",
+    "It got away this time, but I know you’ll catch it next time!",
+    "Sometimes you miss, but every Trainer learns from their mistakes!",
+    "No problem! Even the best Trainers have tough catches.",
+    "That Pokémon’s feisty! Maybe it’s testing your determination.",
+    "Keep your eyes sharp! Timing is everything when catching Pokémon.",
+    "Almost had it! A little more practice, and you’ll be unstoppable!",
+    "Catching Pokémon isn’t easy, but that’s what makes it exciting!",
+    "You’ve got the spirit! Let’s go for it again!",
+    "Missing a catch happens to everyone. Let’s give it another shot!",
+    "Pikachu and I have been through this before—don’t give up!",
+    "That Pokémon must have some serious energy! You’ll get it soon!",
+    "Next time, aim carefully and keep calm—you’ve got this!",
+    "Whoa, that one put up a real fight! Try again, I believe in you!",
+    "Hey, every Trainer misses sometimes. Just keep trying!",
+    "Remember, patience is key when it comes to catching Pokémon.",
+    "It’s all part of the journey! Let’s see if we can find it again.",
+    "Ah, that one was tricky! Let’s go find another Pokémon to catch!",
+    "Even the toughest Pokémon can be caught with persistence. Keep going!"
+  ];

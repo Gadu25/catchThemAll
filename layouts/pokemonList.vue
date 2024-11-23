@@ -3,7 +3,7 @@
         <div class="flex flex-wrap">
             <template v-for="pokemon in pokemons.results">
                 <div class="w-full sm:w-1/2 lg:w-1/3 xl:w-1/5 p-2 card-wrapper" ref="card">
-                    <Card :name="pokemon.name" :url="pokemon.url"/>
+                    <Card :name="pokemon.name" :url="pokemon.url" @handleParentFunction="handleParentFunction"/>
                 </div>
             </template>
         </div>
@@ -49,6 +49,9 @@
                     this.fetchPokemons(this.pokemons.next);
                 }
             },
+            handleParentFunction(){
+                this.$emit('failedCatch');
+            }
         },
         watch: {
             pokemons(newVal, oldVal){
