@@ -56,7 +56,7 @@ export default {
 
     },
     mounted() {
-        this.intervalId = this.startPhraseRotation()
+        this.changePhrase()
     },
     beforeUnmount() {
         clearInterval(this.intervalId);
