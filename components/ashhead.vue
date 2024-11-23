@@ -66,7 +66,7 @@ export default {
 
 <style lang="scss">
 $box-width: 100%; // Width of the dialogue box
-$box-height: 80px; // Height of the dialogue box
+$box-height: auto; // Height of the dialogue box
 $box-bg-color: rgba(0, 0, 0, 0.7); // Background color with transparency
 $box-border-color: #fff; // Border color (white)
 $box-border-width: 4px; // Thickness of the border

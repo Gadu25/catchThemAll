@@ -375,7 +375,7 @@ export default {
           top: 60vh;
           left: 10%;
           width: $box-width;
-          height: $box-height;
+          min-height: $box-height;
           background-color: $box-bg-color;
           // border: $box-border-width solid $box-border-color;
           padding: 10px;
