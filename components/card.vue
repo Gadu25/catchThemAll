@@ -1,11 +1,11 @@
 <template>
-    <div class="card rounded-lg" :style="borderValue+'; padding: 2px;'" :class="cardClicked ? 'clicked' : ''" @click="clickCard(pokemonData.name)">
+    <div class="card rounded-lg" :style="borderValue+'; padding: 2px;'" :class="{'clicked': cardClicked, 'twitching': twitching, 'escaped': isEscaped}" @click="clickCard(pokemonData.name)">
         <div class="w-full h-full p-5 rounded-md flex justify-between cursor-pointer hover:shadow bg-card-light dark:bg-card-dark">
             <img v-if="!imageIsLoaded" class="pokemon-egg animate-upDown" src="~/assets/images/pokemonEgg.webp" :alt="name + '-image'" />
-            <img v-if="!loading" @load="imageLoaded" ref="cardImage" class="pokemon w-3/6" :src="pokemonImage" :alt="name + '-image'" :class="!imageIsLoaded ? 'position-absolute':''" />
+            <img v-if="!loading" @load="imageLoaded" ref="cardImage" class="pokemon w-3/6" :class="!pokemonStore.isCaught(name) ? 'silhouette': ''" :src="pokemonImage" :alt="name + '-image'"/>
             <div v-if="imageIsLoaded">
-                <p class="first-letter:uppercase"><strong>{{ name }}</strong></p>
-                <div v-if="!loading" class="py-2">
+                <p class="first-letter:uppercase"><strong>{{ pokemonStore.isCaught(name) ? name : '???' }}</strong></p>
+                <div v-if="!loading && pokemonStore.isCaught(name)" class="py-2">
                     <template v-for="type in pokemonTypes">
                         <PokemonTypeCard :name="type.type.name" :color="pokemonColor(type.type.name)" :badge="pokemonTypeBadge(type.type.name)"/>
                     </template>
@@ -32,7 +32,10 @@ export default {
             pokemonData: null,
             cardClicked: false,
             imageIsLoaded: false,
-            borderValue: 'transparent'
+            borderValue: 'transparent',
+            twitching: false,
+            getOut: false,
+            isEscaped: false
         }
     },
     components: {
@@ -93,11 +96,32 @@ export default {
                 }
             }
         },
+        getChance(percentage) {
+            // Generate a random number between 0 and 100
+            const random = Math.random() * 100;
+            return random < percentage;
+        },
         async clickCard(id) {
-            this.cardClicked = true
-            this.pokemonStore.catchPokemon(this.name);
-            await this.delay(950);
-            this.$router.push({ name: 'pokemon-id', params: { id } });
+            if(this.cardClicked == false){
+                this.cardClicked = true
+                await this.delay(950);
+                if(this.pokemonStore.isCaught(this.name)){
+                    this.$router.push({ name: 'pokemon-id', params: { id } });
+                }
+                this.twitching = true;
+                await this.delay(3000);
+                if(this.getChance(30)){
+                    this.pokemonStore.catchPokemon(this.name);
+                    this.$router.push({ name: 'pokemon-id', params: { id } });
+                }
+                else {
+                    this.twitching= false
+                    this.isEscaped = true
+                    await this.delay(2000);
+                    this.cardClicked = false
+                    this.isEscaped = false
+                }
+            }
         }
     },
     mounted() {
@@ -189,7 +213,23 @@ export default {
         .pokemon {
             animation: catchAnimation 0.5s forwards .4s;
         }
+
+        &.twitching {
+            .pokeball {
+                animation: twitch 1s forwards infinite;
+            }
+        }
+
+        &.escaped {
+            .pokeball {
+                animation: open .3s forwards
+            }
+            .pokemon {
+                animation: getOutAnimation .3s forwards;
+            }
+        }
     }
+
 }
 
 @keyframes jumpUp {
@@ -280,5 +320,56 @@ export default {
     100% {
         transform: translateY(0);
     }
+}
+
+@keyframes twitch {
+  0%, 20% {
+    transform: translate(75px, -90px);
+    scale: .8;
+  }
+  25% {
+    transform: translate(72px, -90px) rotate(-3deg);
+  }
+  50% {
+    transform: translate(78px, -90px) rotate(3deg);
+  }
+  75% {
+    transform: translate(72px, -90px) rotate(-3deg);
+  }
+  80%, 100% {
+    transform: translate(75px, -90px);
+    scale: .8;
+  }
+}
+
+@keyframes open {
+  0% {
+    opacity: 1;
+    scale: .8;
+    transform: translate(75px, -90px);
+  }
+
+  100% {
+    opacity: 0;
+    scale: .8;
+    transform: translate(75px, -90px);
+  }
+}
+
+@keyframes getOutAnimation {
+  0% {
+    transform: scale(0);
+    opacity: 0;
+  }
+
+  50% {
+    transform: scale(0.5);
+    opacity: 0.5;
+  }
+
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
 }
 </style>
