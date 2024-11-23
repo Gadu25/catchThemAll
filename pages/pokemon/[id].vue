@@ -396,10 +396,8 @@ export default {
           .text {
             font-size: 16px;
             line-height: 1.5;
-            white-space: nowrap;
             text-wrap: wrap;
             overflow: hidden;
-            display: inline-block;
 
             // Typewriter effect
             &::after {
