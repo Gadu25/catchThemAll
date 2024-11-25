@@ -22,7 +22,8 @@ export default {
             currentPhrase: "Hello Trainer! I'm Ash Ketchum",
             displayedPhrase: "",
             intervalId: null,
-            typingSpeed: 30 // Typing speed in ms
+            typingSpeed: 30,
+            typingCancelToken: null
         };
     },
     methods: {
@@ -34,17 +35,27 @@ export default {
             return index;
         },
         async typePhrase(phrase) {
+            // Cancel any ongoing typing animation
+            const token = Symbol("typing");
+            this.typingCancelToken = token;
+
             this.displayedPhrase = ""; // Reset displayed phrase
             for (let i = 0; i < phrase.length; i++) {
+                if (this.typingCancelToken !== token) {
+                    // Stop animation if the token changes
+                    return;
+                }
                 this.displayedPhrase += phrase[i];
-                await this.delay(this.typingSpeed); // Wait for the typing effect
+                await this.delay(this.typingSpeed);
             }
         },
         async changePhrase() {
             clearInterval(this.intervalId);
+
             const newIndex = this.getRandomIndex(this.idlePhrases.length, -1);
             this.currentPhrase = this.idlePhrases[newIndex];
-            await this.typePhrase(this.currentPhrase); // Animate the new phrase
+
+            await this.typePhrase(this.currentPhrase); // Trigger typing effect
             this.intervalId = this.startPhraseRotation();
         },
         async failedToCatch() {
@@ -71,6 +82,7 @@ export default {
     },
     beforeUnmount() {
         clearInterval(this.intervalId);
+        this.typingCancelToken = null;
     }
 };
 </script>
