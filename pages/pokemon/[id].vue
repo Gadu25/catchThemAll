@@ -130,10 +130,12 @@
 <script>
 import { usePokemonStore } from '~/store/pokemon';
 import { useSpeciesStore } from '~/store/species';
+import { useCaughtPokemonStore } from '~/store/caughtpokemon';
 import { mapState, mapActions } from 'pinia';
 import PokemonTypeCard from '~/components/pokemontypecard.vue';
 import PokemonTypeList from '~/layouts/pokemontypelist.vue';
 import pokemonTypeClass from '~/data/pokemonTypeClass';
+import caughtAudio from '~/assets/audio/caught-pokemon.mp3'
 
 export default {
   name: 'pokemon-id',
@@ -167,13 +169,18 @@ export default {
         "A new chapter begins with {{pokemonName}}!"
       ],
       borderValue: 'background-color: transparent',
-      fullyLoaded: false
+      fullyLoaded: false,
+      caughtAudio: caughtAudio,
     }
   },
   components: { PokemonTypeCard, PokemonTypeList },
   computed: {
     ...mapState(usePokemonStore, ['pokemon', 'loading', 'error']),
-    ...mapState(useSpeciesStore, ['species', 'speciesLoading', 'speciesError'])
+    ...mapState(useSpeciesStore, ['species', 'speciesLoading', 'speciesError']),
+    ...mapState(useCaughtPokemonStore, ['getCaughtPokemons', 'getRecentCatch']),
+    pokemonStore() {
+        return useCaughtPokemonStore();
+    },
   },
   methods: {
     ...mapActions(usePokemonStore, ['fetchPokemon']),
@@ -197,6 +204,11 @@ export default {
     async transition() {
       await this.delay(2000)
       this.isShowingOff = false
+    },
+    async playCaught(){
+      const audio = new Audio(this.caughtAudio);
+      await this.delay(1000)
+      audio.play();
     },
     finishShowOff(){
       if(!this.isFlipped){
@@ -272,6 +284,11 @@ export default {
       pokemon(newVal, oldVal){
           this.$nextTick(() => {
             this.fetchSpecies(this.$route.params.id);
+            let recentCatch = this.getRecentCatch()
+            if(recentCatch == newVal.name){
+              this.playCaught()
+              this.pokemonStore.removeRecentCatch()
+            }
             this.initialCry()
             this.getBorderGradient()
             this.fullyLoaded = true
