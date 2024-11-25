@@ -59,7 +59,7 @@ export default {
                 const newIndex = this.getRandomIndex(this.idlePhrases.length, -1);
                 this.currentPhrase = this.idlePhrases[newIndex];
                 this.typePhrase(this.currentPhrase); // Animate during rotation
-            }, 12000);
+            }, 15000);
         },
         delay(ms) {
             return new Promise((resolve) => setTimeout(resolve, ms));
