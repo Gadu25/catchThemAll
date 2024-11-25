@@ -18,7 +18,11 @@
       </div>
       <div class="card__face card__face--back p-1 rounded-lg" :style="borderValue">
         <div class="p-5 bg-card-light dark:bg-card-dark rounded-md">
-          <div class="flex lg:flex-row-reverse justify-between flex-col">
+          <div @click="goToPrev()" class="absolute top-1 left-1 h-8 w-auto px-3 py-2 rounded-tl-md rounded-r-md text-slate-50 dark:bg-slate-900 bg-pokeball-red flex items-center justify-center cursor-pointer group transition-all">
+            <i class="fa-solid fa-chevron-left"></i>
+            <span class="w-0 opacity-0 group-hover:w-auto group-hover:opacity-100 group-hover:px-2 transition-all"><small>back</small></span>
+          </div>
+          <div class="flex lg:flex-row-reverse justify-between flex-col mt-2">
             <div class="flex-col flex-1 justify-center align-center w-full h-full">
               <div class="flex justify-center">
               <div class="pokemon-image relative">
@@ -275,6 +279,9 @@ export default {
     getRandomMessage() {
       const randomIndex = Math.floor(Math.random() * this.pokemonMessages.length);
       return this.pokemonMessages[randomIndex].replace("{{pokemonName}}", this.pokemon.name);
+    },
+    goToPrev() {
+      this.$router.go(-1);
     },
     delay(ms) {
       return new Promise(resolve => setTimeout(resolve, ms));
