@@ -9,10 +9,10 @@
         <div class="py-4 xl:px-32 lg:px-20 sm:px-10 px-4 flex:col xl:flex space-between">
             <Ashhead class="flex-1" ref="ash"/>
             <div class="flex-1 flex justify-end items-center">
-                <!-- <div class="pokedex flex-col justify-center items-center cursor-pointer">
+                <div class="pokedex flex-col justify-center items-center cursor-pointer">
                     <img class="w-12" src="~/assets/images/pokedex.png">
                     <span class="font-bold "><small>PokeDex</small></span>
-                </div> -->
+                </div>
             </div>
         </div>
         <div class="pb-3 xl:px-32 lg:px-20 sm:px-10 px-4">
