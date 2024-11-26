@@ -198,7 +198,7 @@ export default {
 
         .circle-highlight {
             position: relative;
-            height: 100%;
+            height: 280px;
         }
     }
 }
@@ -207,7 +207,7 @@ export default {
         .circle-highlight {
             top: 0;
             outline: 25px solid #333333;
-            height: 100%;
+            height: 280px;
         }
     }
 }
