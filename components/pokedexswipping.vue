@@ -103,7 +103,7 @@ export default {
     .card {
         position: absolute;
         width: 100%;
-        height: 300px;
+        height: 280px;
         transition: transform 0.3s, opacity 0.3s, z-index 0.3s;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
