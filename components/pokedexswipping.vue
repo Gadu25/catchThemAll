@@ -4,6 +4,9 @@
         class="stack-container"
         ref="stackContainer"
         @wheel="handleMouseWheel"
+        @touchstart="startTouch"
+        @touchmove="handleTouchMove"
+        @touchend="endTouch"
       >
         <PokedexCard
           v-for="(card, index) in cards"
@@ -12,10 +15,6 @@
           :style="getCardStyle(index)"
         />
       </div>
-      <!-- <div class="controls">
-        <button @click="prevCard" :disabled="activeIndex === 0">Previous</button>
-        <button @click="nextCard" :disabled="activeIndex === cards.length - 1">Next</button>
-      </div> -->
     </div>
   </template>
   
@@ -28,6 +27,7 @@
     data() {
       return {
         activeIndex: 1, // Start with the second card as active
+        startTouchY: 0, // Starting touch position
         cards: [
           { name: "Bulbasaur" },
           { name: "Charmander" },
@@ -60,6 +60,28 @@
           this.prevCard();
         }
       },
+      startTouch(event) {
+        // Record touch start position
+        this.startTouchY = event.touches[0].clientY;
+      },
+      handleTouchMove(event) {
+        // Prevent default scrolling behavior
+        event.preventDefault();
+  
+        const touchMoveY = event.touches[0].clientY;
+        const deltaY = this.startTouchY - touchMoveY;
+  
+        if (deltaY > 50) {
+          this.nextCard();
+          this.startTouchY = touchMoveY; // reset touch start
+        } else if (deltaY < -50) {
+          this.prevCard();
+          this.startTouchY = touchMoveY; // reset touch start
+        }
+      },
+      endTouch() {
+        // Handle touch end (optional, if needed for cleanup)
+      },
       nextCard() {
         if (this.activeIndex < this.cards.length - 1) {
           this.activeIndex++;
@@ -83,7 +105,6 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    // cursor: pointer; /* Change cursor to indicate interaction area */
     flex-direction: column; /* Stack the cards vertically */
   
     .card {
