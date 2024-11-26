@@ -25,8 +25,8 @@
                 </div>
                 <div class="absolute bottom-0 right-0 p-2 flex justify-end">
                     <div class="w-4 h-4 bg rounded-lg bg-fire-red ms-2 border-2"></div>
-                    <div class="w-4 h-4 bg rounded-lg bg-grass-green ms-2 border-2"></div>
                     <div class="w-4 h-4 bg rounded-lg bg-electric-yellow ms-2 border-2"></div>
+                    <div class="w-4 h-4 bg rounded-lg bg-grass-green ms-2 border-2"></div>
                 </div>
             </div>
         </div>
