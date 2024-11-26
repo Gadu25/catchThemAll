@@ -37,11 +37,13 @@ export default {
             const scale = 1 - Math.abs(offset) * 0.1;
             const translateY = offset * 90;
             const opacity = Math.max(0.2, 1 - Math.abs(offset) * 0.4);
+            const isVisible = Math.abs(offset) < 3;
 
             return {
                 transform: `translateY(${translateY}px) scale(${scale})`,
                 zIndex,
                 opacity,
+                display: isVisible ? 'block' : 'none'
             };
         },
         handleMouseWheel(event) {
@@ -108,8 +110,9 @@ export default {
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 
         &.is-active {
-            transform: translateY(0) scale(1);
+            transform: translateY(0) scale(1.05);
             z-index: 10;
+            box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
         }
     }
 }
