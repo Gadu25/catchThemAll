@@ -17,7 +17,7 @@
                     <h4 class="font-bold text-5xl mb-2 first-letter:uppercase">{{ pokemonName }}</h4>
                     <PokemonTypeList :pokemonTypes="types" :isCentered="false" :isShowTitle="false" />
                     <div v-if="!loading" class="my-2">
-                        <p class="text-xl">{{ pokemonDesc }}</p>
+                        <p class="text-lg xl:text-xl">{{ pokemonDesc }}</p>
                     </div>
                 </div>
                 <div class="absolute top-0 right-0 p-2">
