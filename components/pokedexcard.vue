@@ -1,31 +1,33 @@
 <template>
-    <div class="card-container w-full min-h-72 relative overflow-hidden bg-pokeball-red dark:bg-pokeball-blue">
-        <div class="circle-highlight flex flex-col justify-center items-center bg-card-light dark:bg-card-dark">
-            <img v-if="!imageIsLoaded" class="pokemon-egg animate-upDown" src="~/assets/images/pokemonEgg.webp"
-                :alt="pokemonName + '-image'" />
-            <img v-if="!loading" @load="imageLoaded" ref="cardImage" class="pokemon w-3/6"
-                :class="isActive ? 'animate-upDown' : ''" :src="pokemonImage" :alt="pokemonName + '-image'" />
-            <span class="block lg:hidden">
-                <p class="first-letter:uppercase">
-                   #{{ pokeNumber }} {{pokemonName}}
-                </p>
-            </span>
-        </div>
-        <div class="information">
-            <div class="card-desc">
-                <h4 class="font-bold text-5xl mb-2 first-letter:uppercase">{{ pokemonName }}</h4>
-                <PokemonTypeList :pokemonTypes="types" :isCentered="false" :isShowTitle="false" />
-                <div v-if="!loading" class="my-2">
-                    <p>{{ pokemonDesc }}</p>
+    <div>
+        <div class="card-container w-full min-h-72 relative overflow-hidden bg-pokeball-red dark:bg-pokeball-blue">
+            <div class="circle-highlight flex flex-col justify-center items-center bg-card-light dark:bg-card-dark">
+                <img v-if="!imageIsLoaded" class="pokemon-egg animate-upDown" src="~/assets/images/pokemonEgg.webp"
+                    :alt="pokemonName + '-image'" />
+                <img v-if="!loading" @load="imageLoaded" ref="cardImage" class="pokemon w-3/6"
+                    :class="isActive ? 'animate-upDown' : ''" :src="pokemonImage" :alt="pokemonName + '-image'" />
+                <span class="block lg:hidden">
+                    <p class="first-letter:uppercase">
+                       #{{ pokeNumber }} {{pokemonName}}
+                    </p>
+                </span>
+            </div>
+            <div class="information">
+                <div class="card-desc">
+                    <h4 class="font-bold text-5xl mb-2 first-letter:uppercase">{{ pokemonName }}</h4>
+                    <PokemonTypeList :pokemonTypes="types" :isCentered="false" :isShowTitle="false" />
+                    <div v-if="!loading" class="my-2">
+                        <p>{{ pokemonDesc }}</p>
+                    </div>
                 </div>
-            </div>
-            <div class="absolute top-0 right-0 p-2">
-                <p class="text-3xl">#{{ pokeNumber }}</p>
-            </div>
-            <div class="absolute bottom-0 right-0 p-2 flex justify-end">
-                <div class="w-4 h-4 bg rounded-lg bg-fire-red ms-2 border-2"></div>
-                <div class="w-4 h-4 bg rounded-lg bg-grass-green ms-2 border-2"></div>
-                <div class="w-4 h-4 bg rounded-lg bg-electric-yellow ms-2 border-2"></div>
+                <div class="absolute top-0 right-0 p-2">
+                    <p class="text-3xl">#{{ pokeNumber }}</p>
+                </div>
+                <div class="absolute bottom-0 right-0 p-2 flex justify-end">
+                    <div class="w-4 h-4 bg rounded-lg bg-fire-red ms-2 border-2"></div>
+                    <div class="w-4 h-4 bg rounded-lg bg-grass-green ms-2 border-2"></div>
+                    <div class="w-4 h-4 bg rounded-lg bg-electric-yellow ms-2 border-2"></div>
+                </div>
             </div>
         </div>
     </div>
@@ -186,6 +188,7 @@ export default {
 
 @media screen and (max-width: 1024px) {
     .card-container {
+        position: relative;
         display: flex;
         justify-content: center;
         border-right: unset;
@@ -195,6 +198,7 @@ export default {
 
         .circle-highlight {
             position: relative;
+            height: 100%;
         }
     }
 }
