@@ -55,7 +55,7 @@
                 </div>
               </div>
               <template v-if="fullyLoaded">
-                <p>{{ filteredFlavorText(species?.flavor_text_entries[0]?.flavor_text) }}</p>
+                <p>{{ filteredFlavorText(species?.flavor_text_entries.find(entry => entry.language.name === 'en').flavor_text) }}</p>
                 <PokemonTypeList :pokemonTypes="pokemon.types" :isShowTitle="false" :isCentered="false"/>
                 <table class="table-auto w-full leading-10">
                   <tbody>
