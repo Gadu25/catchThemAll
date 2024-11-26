@@ -17,11 +17,11 @@
                     <h4 class="font-bold text-5xl mb-2 first-letter:uppercase">{{ pokemonName }}</h4>
                     <PokemonTypeList :pokemonTypes="types" :isCentered="false" :isShowTitle="false" />
                     <div v-if="!loading" class="my-2">
-                        <p>{{ pokemonDesc }}</p>
+                        <p class="text-xl">{{ pokemonDesc }}</p>
                     </div>
                 </div>
                 <div class="absolute top-0 right-0 p-2">
-                    <p class="text-3xl">#{{ pokeNumber }}</p>
+                    <p class="text-3xl font-bold">#{{ pokeNumber }}</p>
                 </div>
                 <div class="absolute bottom-0 right-0 p-2 flex justify-end">
                     <div class="w-4 h-4 bg rounded-lg bg-fire-red ms-2 border-2"></div>
