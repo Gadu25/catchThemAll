@@ -5,7 +5,7 @@
             <img v-if="!loading" @load="imageLoaded" ref="cardImage" class="pokemon w-3/6" :class="isActive ? 'animate-upDown':''" :src="pokemonImage" :alt="pokemonName + '-image'"/>
         </div>
         <div class="card-desc">
-            <h4 class="font-bold text-5xl mb-2">{{ pokemonName }}</h4>
+            <h4 class="font-bold text-5xl mb-2 first-letter:uppercase">{{ pokemonName }}</h4>
             <PokemonTypeList :pokemonTypes="types" :isCentered="false" :isShowTitle="false"/>
             <div v-if="!loading" class="my-2">
                 <p>{{ pokemonDesc }}</p>
@@ -140,7 +140,7 @@
 
 <style lang="scss" scoped>
     .card-container {
-        border: 8px solid #333333;
+        border-right: 8px solid #333333;
         border-radius: 20px;
         z-index: 1;
         .circle-highlight {
