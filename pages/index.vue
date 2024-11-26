@@ -13,10 +13,12 @@
                     <i class="fa-regular fa-circle-question fa-xl p-4"></i>
                     <span class="font-bold "><small>Help</small></span>
                 </div>
-                <div class="item">
-                    <img class="w-10" src="~/assets/images/pokedex.png">
-                    <span class="font-bold "><small>PokeDex</small></span>
-                </div>
+                <NuxtLink to="/pokedex">
+                    <div class="item">
+                        <img class="w-10" src="~/assets/images/pokedex.png">
+                        <span class="font-bold "><small>PokeDex</small></span>
+                    </div>
+                </NuxtLink>
             </div>
         </div>
         <div class="pb-3 xl:px-32 lg:px-20 sm:px-10 px-4">

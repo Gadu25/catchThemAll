@@ -186,8 +186,12 @@ export default {
     .pokemon {
         opacity: 0;
         transition: .3s;
+        pointer-events: none;
+        user-select: none;
         &.silhouette {
             filter: brightness(0) saturate(100%);
+            pointer-events: none;
+            user-select: none;
         }
     }
     .pokemon-egg {
