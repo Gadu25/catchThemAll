@@ -36,7 +36,7 @@ export default {
             const zIndex = 100 - Math.abs(offset); // Higher z-index for the active card
             const scale = 1 - Math.abs(offset) * 0.1;
             const translateY = offset * 90;
-            const opacity = 1 - Math.abs(offset) * 0.3;
+            const opacity = Math.max(0.2, 1 - Math.abs(offset) * 0.4);
 
             return {
                 transform: `translateY(${translateY}px) scale(${scale})`,

@@ -200,9 +200,9 @@ export default {
 }
 @media  screen and (max-width: 425px) {
     .card-container {
-        border-radius: 10px;
         .circle-highlight {
             top: 0;
+            outline: 25px solid #333333;
             height: 100%;
         }
     }
