@@ -7,7 +7,7 @@
             <PokemonTypeList :isCentered="false"/>
         </div> -->
         <div class="py-4 xl:px-32 lg:px-20 sm:px-10 px-4 lg:flex-row flex flex-col-reverse space-between">
-            <Ashhead class="flex-1" ref="ash"/>
+            <Ashhead class="flex-1 me-2" ref="ash"/>
             <div class="flex-1 flex justify-end items-center lg:mb-0 mb-2">
                 <div class="item" @click="toggleHelp = true">
                     <i class="fa-regular fa-circle-question fa-xl p-4"></i>
