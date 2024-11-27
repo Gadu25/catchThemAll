@@ -2,7 +2,7 @@
     <div>
         <div class="stack-container" ref="stackContainer" @wheel="handleMouseWheel" @touchstart="startTouch"
             @touchmove="handleTouchMove" @touchend="endTouch">
-            <PokedexCard v-for="(card, index) in caughtPokemons" :key="index"
+            <PokedexCard class="w-full lg:10/12 xl:w-9/12" v-for="(card, index) in caughtPokemons" :key="index"
                 :class="['card', { 'is-active': index === activeIndex }]" :style="getCardStyle(index)"
                 :pokemonName='card' :isActive="index === activeIndex" />
         </div>
@@ -104,7 +104,7 @@ export default {
 
     .card {
         position: absolute;
-        width: 100%;
+        // width: 100%;
         height: 280px;
         transition: transform 0.3s, opacity 0.3s, z-index 0.3s;
         box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);

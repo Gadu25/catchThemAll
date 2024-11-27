@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card-container w-full min-h-72 relative overflow-hidden bg-pokeball-red dark:bg-pokeball-blue">
+        <div class="card-container w-full min-h-72 relative overflow-hidden bg-pokeball-red dark:bg-pokeball-blue" :class="{'clicked':clicked && isActive, 'cursor-pointer':isActive}" @click="clickAction()">
             <div class="circle-highlight flex flex-col justify-center items-center bg-card-light dark:bg-card-dark">
                 <img v-if="!imageIsLoaded" class="pokemon-egg animate-upDown" src="~/assets/images/pokemonEgg.webp"
                     :alt="pokemonName + '-image'" />
@@ -28,6 +28,7 @@
                     <div class="w-4 h-4 bg rounded-lg bg-electric-yellow ms-2 border-2"></div>
                     <div class="w-4 h-4 bg rounded-lg bg-grass-green ms-2 border-2"></div>
                 </div>
+                <div class="bottom-design"></div>
             </div>
         </div>
     </div>
@@ -60,7 +61,8 @@ export default {
             error: null,
             pokemonData: null,
             imageIsLoaded: false,
-            pokemonSpecies: null
+            pokemonSpecies: null,
+            clicked: false
         }
     },
     computed: {
@@ -88,6 +90,9 @@ export default {
                 this.fetchSpecies();
                 this.loading = false;
             }
+        },
+        clickAction() {
+            this.isActive ? this.clicked = true : null
         },
         fetchSpecies() {
             axios.get('https://pokeapi.co/api/v2/pokemon-species/' + this.pokemonData.id).then(res => {
@@ -154,6 +159,26 @@ export default {
     border-right: 8px solid #333333;
     border-radius: 20px;
     z-index: 1;
+    transition: all .3s;
+    &.clicked {
+        position: relative;
+        display: flex;
+        justify-content: center;
+        border-right: unset;
+        height: 100%;
+        overflow: hidden;
+        .information {
+            opacity: 0;
+            height: 0;
+            width: 0;
+        }
+
+        .circle-highlight {
+            position: relative;
+            top: calc(-200%/4);
+            height: 200%;
+        }
+    }
 
     .circle-highlight {
         position: absolute;
@@ -164,6 +189,7 @@ export default {
         aspect-ratio: 1 / 1;
         outline: 48px solid #333333;
         z-index: 2;
+        transition: all .3s;
 
         .pokemon {
             opacity: 0;
@@ -179,9 +205,20 @@ export default {
     }
 
     .information {
+        transition: all .3s;
         .card-desc {
             padding: 15px;
             margin-left: 500px;
+        }
+        .bottom-design {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            height: 6px;
+            width: 80px;
+            opacity: 50%;
+            background-color: #333333;
+            border-radius: 3px;
         }
     }
 }
