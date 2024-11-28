@@ -211,6 +211,7 @@ export default {
     },
     async playCaught(){
       const audio = new Audio(this.caughtAudio);
+      audio.volume = 0.5;
       await this.delay(1000)
       audio.play();
     },

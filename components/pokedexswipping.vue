@@ -86,16 +86,18 @@ export default {
             // Handle touch end (optional, if needed for cleanup)
         },
         nextCard() {
-            const audio = new Audio(this.swipeAudio);
-            audio.play();
             if (this.activeIndex < this.caughtPokemons.length - 1) {
+                const audio = new Audio(this.swipeAudio);
+                audio.volume = 0.5;
+                audio.play();
                 this.activeIndex++;
             }
         },
         prevCard() {
-            const audio = new Audio(this.swipeAudio);
-            audio.play();
             if (this.activeIndex > 0) {
+                const audio = new Audio(this.swipeAudio);
+                audio.volume = 0.5;
+                audio.play();
                 this.activeIndex--;
             }
         },
