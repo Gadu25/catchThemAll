@@ -3,9 +3,29 @@
 @tailwind utilities;
 
 body {
-    @apply bg-lightBackground text-lightText;
+  @apply bg-lightBackground text-lightText;
+}
+
+.dark body {
+  @apply bg-darkBackground text-darkText;
+}
+
+@layer utilities {
+  ::-webkit-scrollbar {
+    width: 12px;
   }
-  
-  .dark body {
-    @apply bg-darkBackground text-darkText;
+  ::-webkit-scrollbar-track-piece {
+    background-color: #fff;
+    border-radius: 8px;
   }
+  ::-webkit-scrollbar-thumb {
+    background-color: #cbcbcb;
+    outline: 2px solid #fff;
+    outline-offset: -2px;
+    border: 0.1px solid #b7b7b7;
+    border-radius: 8px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: #909090;
+  }
+}
