@@ -10,6 +10,7 @@
 </template>
 
 <script>
+import swipeAudio from '~/assets/audio/swipe.mp3';
 import PokedexCard from "./pokedexcard.vue";
 import { useCaughtPokemonStore } from '~/store/caughtpokemon';
 
@@ -19,7 +20,8 @@ export default {
     data() {
         return {
             activeIndex: 1, // Start with the second card as active
-            startTouchY: 0, // Starting touch position
+            startTouchY: 0, // Starting touch position,
+            swipeAudio: swipeAudio
         };
     },
     computed: {
@@ -45,6 +47,13 @@ export default {
                 opacity,
                 display: isVisible ? 'block' : 'none'
             };
+        },
+        handleKeyDown(event) {
+            if (event.key === 'ArrowDown' || event.key === 'ArrowRight') {
+                this.nextCard();
+            } else if (event.key === 'ArrowUp' || event.key === 'ArrowLeft') {
+                this.prevCard();
+            }
         },
         handleMouseWheel(event) {
             // Handle mouse wheel scroll to move the stack
@@ -77,15 +86,25 @@ export default {
             // Handle touch end (optional, if needed for cleanup)
         },
         nextCard() {
+            const audio = new Audio(this.swipeAudio);
+            audio.play();
             if (this.activeIndex < this.caughtPokemons.length - 1) {
                 this.activeIndex++;
             }
         },
         prevCard() {
+            const audio = new Audio(this.swipeAudio);
+            audio.play();
             if (this.activeIndex > 0) {
                 this.activeIndex--;
             }
         },
+    },
+    mounted() {
+        window.addEventListener('keydown', this.handleKeyDown);
+    },
+    beforeUnmount() {
+        window.removeEventListener('keydown', this.handleKeyDown);
     },
 };
 </script>

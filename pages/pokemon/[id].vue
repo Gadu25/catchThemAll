@@ -227,7 +227,7 @@ export default {
       return total
     },
     getStatPercentage(name, value){
-      let maxStat = this.getMaxStat(name, value)
+      let maxStat = (this.getMinStat(name, value) + this.getMaxStat(name, value)) / 2
       return (value/maxStat) * 100
     },
     getMinStat(name, value){
