@@ -1,5 +1,5 @@
 <template>
-    <nav :class="isClose ? 'is-close':''" class="w-100 flex justify-between items-center bg-pokeball-red dark:bg-pokeball-blue shadow-xl border-b-2 border-b-slate-950 xl:px-32 lg:px-20 sm:px-10 px-4">
+    <nav :class="isClose ? 'is-close':''" class="w-100 sticky top-0 flex justify-between items-center bg-pokeball-red dark:bg-pokeball-blue shadow-xl border-b-2 border-b-slate-950 xl:px-32 lg:px-20 sm:px-10 px-4">
         <div v-if="state.isDarkMode" class="stripe-left"></div>
         <div v-if="state.isDarkMode" class="stripe-right"></div>
         <template v-if="!isClose">
@@ -19,6 +19,7 @@
 
     const state = reactive({
         isDarkMode: false,
+        toggleHelp: false
     });
 
     const props = defineProps({

@@ -1,6 +1,6 @@
 <template>
     <div class="flex justify-start items-center cursor-pointer" @click="changePhrase()">
-        <div>
+        <div v-if="showAsh">
             <img class="w-24 pe-4" src="~/assets/images/ash.png" alt="ash-image" />
         </div>
         <div class="dialogue-box border-4 border-card-dark dark:border-card-light">
@@ -83,6 +83,12 @@ export default {
     beforeUnmount() {
         clearInterval(this.intervalId);
         this.typingCancelToken = null;
+    },
+    props: {
+        showAsh: {
+            type: Boolean,
+            default: false
+        }
     }
 };
 </script>

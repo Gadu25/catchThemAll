@@ -12,10 +12,10 @@ body {
 
 @layer utilities {
   ::-webkit-scrollbar {
-    width: 12px;
+    width: 16px;
   }
   ::-webkit-scrollbar-track-piece {
-    background-color: #fff;
+    background-color: transparent;
     border-radius: 8px;
   }
   ::-webkit-scrollbar-thumb {

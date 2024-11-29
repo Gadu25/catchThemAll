@@ -1,14 +1,14 @@
 <template>
     <div>
-        <div class="pokemon-container flex flex-wrap border rounded-lg p-2" @scroll="onScroll">
+        <div class="pokemon-container flex flex-wrap pb-3 xl:px-32 lg:px-20 sm:px-10 px-4" @scroll="onScroll">
             <template v-for="pokemon in pokemons">
-                <div class="w-full sm:w-1/2 lg:w-1/3 xl:w-1/5 p-2 card-wrapper" ref="card">
+                <div class="w-full sm:w-1/2 lg:w-1/3 xl:w-1/4 p-2 card-wrapper" ref="card">
                     <Card :name="pokemon.name" :url="pokemon.url" @handleParentFunction="handleParentFunction"/>
                 </div>
             </template>
-        </div>
-        <div v-if="loading" class="flex justify-end">
-            <p>looking for pokemons..</p>
+            <div v-if="nextUrl" class="flex justify-center items-center w-full py-16">
+                <p><i class="fa-solid fa-spinner fa-spin"></i> looking for pokemons..</p>
+            </div>
         </div>
     </div>
 </template>
@@ -58,7 +58,9 @@
 
 <style lang="scss" scoped>
 .pokemon-container {
-    max-height: 65vh; 
+    height: calc(100vh - 60px);
+    // background-color: pink;
+    // min-height: 200px; 
     overflow: auto; 
     scroll-behavior: smooth;
 }

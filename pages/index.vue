@@ -6,7 +6,7 @@
         <!-- <div class="py-4 xl:px-32 lg:px-20 sm:px-10 px-4">
             <PokemonTypeList :isCentered="false"/>
         </div> -->
-        <div class="py-4 xl:px-32 lg:px-20 sm:px-10 px-4 lg:flex-row flex flex-col-reverse space-between">
+        <!-- <div class="py-4 xl:px-32 lg:px-20 sm:px-10 px-4 lg:flex-row flex flex-col-reverse space-between">
             <Ashhead class="flex-1 me-2" ref="ash"/>
             <div class="flex-1 flex justify-end items-center lg:mb-0 mb-2">
                 <div class="item" @click="toggleHelp = true">
@@ -20,10 +20,9 @@
                     </div>
                 </NuxtLink>
             </div>
-        </div>
-        <div class="pb-3 xl:px-32 lg:px-20 sm:px-10 px-4">
+        </div> -->
             <PokemonList @failedCatch="failedCatch"/>
-        </div>
+        <Fab/>
         <div v-if="toggleHelp" @click="toggleHelp = false" class="modal-overlay w-screen h-screen overflow-hidden bg-slate-950 bg-opacity-80 fixed top-0 left-0 flex justify-center items-center z-50">
             <div class="modal-body w-11/12 lg:w-1/2 min-h-32 bg-card-light dark:bg-card-dark bg-opacity-100 rounded-lg border p-4">
                 <h3 class="text-4xl font-bold">Let's go and Catch 'em All!</h3>
@@ -66,6 +65,7 @@ import SearchBar from '~/components/searchbar.vue'
 import PokemonList from '~/layouts/pokemonList.vue';
 import PokemonTypeList from '~/layouts/pokemontypelist.vue';
 import Ashhead from '~/components/ashhead.vue';
+import Fab from '~/components/fab.vue';
 
 const ash = ref(null);
 const toggleHelp = ref(false);
