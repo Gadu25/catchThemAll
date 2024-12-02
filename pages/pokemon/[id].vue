@@ -188,7 +188,7 @@ export default {
   computed: {
     ...mapState(usePokemonStore, ['pokemon', 'loading', 'error']),
     ...mapState(useSpeciesStore, ['species', 'speciesLoading', 'speciesError']),
-    ...mapState(useCaughtPokemonStore, ['getCaughtPokemons', 'getRecentCatch']),
+    ...mapState(useCaughtPokemonStore, ['getCaughtPokemons', 'getRecentCatch', 'isCaught']),
     pokemonStore() {
         return useCaughtPokemonStore();
     },
@@ -326,8 +326,12 @@ export default {
       }
   },
   mounted() {
-    this.handleFetch()
-    this.transition()
+    if(this.isCaught(this.$route.params.id)){
+      this.handleFetch()
+      this.transition()
+    } else {
+      navigateTo('/')
+    }
   }
 }
 </script>
