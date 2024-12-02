@@ -37,7 +37,6 @@
     onBeforeMount(() => {
         themeStore.initializeTheme()
         state.isDarkMode = themeStore.isDarkMode
-        console.log(state.isDarkMode    )
     })
 
 </script>

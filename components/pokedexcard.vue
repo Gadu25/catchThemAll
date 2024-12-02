@@ -98,7 +98,6 @@ export default {
             axios.get('https://pokeapi.co/api/v2/pokemon-species/' + this.pokemonData.id).then(res => {
                 this.pokemonSpecies = res.data;
                 this.pokeNumber = res.data.pokedex_numbers[0].entry_number
-                // console.log(res.data.flavor_text_entries.find(entry => entry.language.name === 'en'))
                 this.pokemonDesc = this.filteredFlavorText(res.data.flavor_text_entries.find(entry => entry.language.name === 'en').flavor_text)
             });
         },

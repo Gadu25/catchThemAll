@@ -72,7 +72,6 @@ const toggleHelp = ref(false);
 
 function failedCatch() {
   if (ash.value) {
-    console.log('clicked')
     ash.value.failedToCatch();
   }
 }
