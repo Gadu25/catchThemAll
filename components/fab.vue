@@ -1,5 +1,5 @@
 <template>
-    <div class="fixed bottom-5 right-5 md:bottom-10 md:right-10">
+    <div class="fixed bottom-12 right-5 md:bottom-10 md:right-10">
         <div class="fab-wrapper" @click="showMenu=!showMenu" :class="{'shown':showMenu}">
             <!-- <img class="fab-bg" src="~/assets/images/fabBg.svg" alt="fab-icon-bg"/> -->
              <div class="fab-bg"></div>
@@ -94,7 +94,7 @@
 </script>
 
 <style lang="scss" scoped>
-    $fabWidth: 80px;
+    $fabWidth: 70px;
     .fab-wrapper {
         width: $fabWidth;
         height: $fabWidth;

@@ -23,39 +23,6 @@
         </div> -->
             <PokemonList @failedCatch="failedCatch"/>
         <Fab/>
-        <div v-if="toggleHelp" @click="toggleHelp = false" class="modal-overlay w-screen h-screen overflow-hidden bg-slate-950 bg-opacity-80 fixed top-0 left-0 flex justify-center items-center z-50">
-            <div class="modal-body w-11/12 lg:w-1/2 min-h-32 bg-card-light dark:bg-card-dark bg-opacity-100 rounded-lg border p-4">
-                <h3 class="text-4xl font-bold">Let's go and Catch 'em All!</h3>
-                <div class="lg:flex-row flex flex-col-reverse space-between mt-4">
-                    <div class="leading-8 max-h-7xl max-h-[40vh] overflow-auto px-2">
-                        <p>Hi there! I’m Professor Oak, your guide to this exciting adventure. Let me show you how to get started:</p>
-                        
-                        <div class="my-2">
-                            <h1 class="text-xl mb-1"><strong>Main Page</strong></h1>
-                            <ul class="ms-2">
-                                <li><i>Click on Pokémon:</i> Try your luck catching Pokémon by clicking on them!</li>
-                                <li><i>Daily Pokéballs:</i> I’ll provide you with 10 Pokéballs every day to help you explore and catch Pokémon. Use them wisely!</li>
-                            </ul>
-                        </div>
-
-                        <div class="my-2">
-                            <h1 class="text-xl mb-1"><strong>Pokédex Page</strong></h1>
-                            <ul class="ms-2">
-                                <li><p><i>Your Pokémon Collection:</i> Browse all the Pokémon you’ve successfully caught here. Can you catch them all?</p></li>
-                            </ul>
-                            
-                        </div>
-
-                        <!-- Closing Note -->
-                        <p>Ready to begin your journey? Adventure awaits—good luck, Trainer!</p>
-                    </div>
-                    <div class="w-3/4 flex justify-center items-center">
-                        <img src="~/assets/images/profOak.png" alt="prof-oak-image"/>
-                    </div>
-                </div>
-                
-            </div>
-        </div>
     </div>
 </template>
 
