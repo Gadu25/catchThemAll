@@ -39,10 +39,10 @@
                 </div>
                 <div class="flex justify-center">
                   <div class="flex justify-center border rounded-md text-slate-950 dark:text-slate-50 mb-4">
-                    <div class="p-2 flex-1 rounded-tl rounded-bl border-r transition-all" :class="type == 'normal' ? 'bg-pokemon-blue text-darkText': 'cursor-pointer'" @click="type='normal'">
+                    <div class="p-2 flex-1 rounded-tl rounded-bl border-r transition-all" :class="type == 'normal' ? 'bg-pokemon-blue text-darkText': 'cursor-pointer'" @click="changeImage('normal')">
                       <p>Normal</p>
                     </div>
-                    <div class="p-2 flex-1 rounded-tr rounded-br transition-all" :class="type == 'shiny' ? 'bg-pokemon-blue text-darkText': 'cursor-pointer'" @click="type='shiny'">
+                    <div class="p-2 flex-1 rounded-tr rounded-br transition-all" :class="type == 'shiny' ? 'bg-pokemon-blue text-darkText': 'cursor-pointer'" @click="changeImage('shiny')">
                       <p>Shiny</p>
                     </div>
                   </div>
@@ -216,6 +216,10 @@ export default {
     async transition() {
       await this.delay(2000)
       this.isShowingOff = false
+    },
+    changeImage(type){
+      this.type = type
+      this.getPokemonImage(this.pokemon.sprites?.other['official-artwork'])
     },
     async playCaught(){
       const audio = new Audio(this.caughtAudio);
