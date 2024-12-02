@@ -110,7 +110,7 @@ export default {
                 }
                 this.twitching = true;
                 await this.delay(3000);
-                if(this.getChance(30)){
+                if(this.getChance(50)){
                     this.pokemonStore.catchPokemon(this.name);
                     this.$router.push({ name: 'pokemon-id', params: { id } });
                 }
