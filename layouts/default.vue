@@ -8,7 +8,7 @@
                 @mousemove="resetTilt">
                 <div class="inner-circle" :class="!isClose ? 'is-open' : ''"></div>
             </div>
-            <NuxtPage v-if="pageShow" />
+            <NuxtPage class="relative" :style="isClose ? 'height: 0px; opacity: 0;':''" />
             <Foot :isClose="isClose" />
         </div>
     </div>
@@ -136,4 +136,5 @@ $circleArea: 12vh;
         }
     }
 }
+
 </style>
