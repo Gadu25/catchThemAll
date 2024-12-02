@@ -1,7 +1,8 @@
 <template>
     <div class="fixed bottom-5 right-5 md:bottom-10 md:right-10">
         <div class="fab-wrapper" @click="showMenu=!showMenu" :class="{'shown':showMenu}">
-            <img class="fab-bg" src="~/assets/images/fabBg.svg" alt="fab-icon-bg"/>
+            <!-- <img class="fab-bg" src="~/assets/images/fabBg.svg" alt="fab-icon-bg"/> -->
+             <div class="fab-bg"></div>
             <img class="fab-head" src="~/assets/images/ash.svg" alt="ash-head"/>
             <div class="menu">
                 <template v-for="(item, index) in list">
@@ -35,12 +36,13 @@
                         <div class="my-2">
                             <h1 class="text-xl mb-1"><strong>Pokédex Page</strong></h1>
                             <ul class="ms-2">
-                                <li><p><i>Your Pokémon Collection:</i> Browse all the Pokémon you’ve successfully caught here. Can you catch them all?</p></li>
+                                <li><p><i>Your Pokémon Collection:</i> Browse all the Pokémon you’ve successfully caught here.</p></li>
                             </ul>
                             
                         </div>
 
                         <!-- Closing Note -->
+                         <p>Can you catch them all?</p>
                         <p>Ready to begin your journey? Adventure awaits—good luck, Trainer!</p>
                     </div>
                     <div class="w-3/4 flex justify-center items-center">
@@ -67,14 +69,14 @@
                 toggleHelp: false,
                 list: [
                     {
-                        title: 'Pokedex',
-                        icon: pokedex,
-                        action: () => this.navigate('/pokedex')
-                    },
-                    {
                         title: 'Help',
                         icon: unown,
                         action: () => this.toggleHelp = true
+                    },
+                    {
+                        title: 'Pokedex',
+                        icon: pokedex,
+                        action: () => this.navigate('/pokedex')
                     }
                 ]
             }
@@ -105,9 +107,12 @@
         .fab-bg{
             position: absolute;
             width: $fabWidth;
+            height: $fabWidth;
             top: 0;
             left: 0;
             z-index: 9;
+            background: linear-gradient(to bottom, #D32F2F 0 45%, #000000 45% 55%, #ffffff 55% 100%); 
+            border-radius: 100%;
         }
 
         .fab-head {
@@ -116,6 +121,7 @@
             top: 13px;
             left: 13px;
             z-index: 10;
+            border-radius: 100%;
         }
 
         &:hover {
