@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card-container w-full min-h-72 relative overflow-hidden bg-pokeball-red dark:bg-pokeball-blue" :class="{'clicked':clicked && isActive, 'cursor-pointer':isActive}" @click="clickAction()">
+        <div class="card-container w-full min-h-72 relative overflow-hidden bg-pokeball-red dark:bg-pokeball-blue" :class="{'clicked':clicked && isActive, 'cursor-pointer':isActive}" @click="clickAction(pokemonData.id)">
             <div class="circle-highlight flex flex-col justify-center items-center bg-card-light dark:bg-card-dark">
                 <img v-if="!imageIsLoaded" class="pokemon-egg animate-upDown" src="~/assets/images/pokemonEgg.webp"
                     :alt="pokemonName + '-image'" />
@@ -91,8 +91,10 @@ export default {
                 this.loading = false;
             }
         },
-        clickAction() {
+        clickAction(id) {
             this.isActive ? this.clicked = true : null
+            console.log('id is', id)
+            this.$router.push({ name: 'pokedex-id', params: { id } });
         },
         fetchSpecies() {
             axios.get('https://pokeapi.co/api/v2/pokemon-species/' + this.pokemonData.id).then(res => {
