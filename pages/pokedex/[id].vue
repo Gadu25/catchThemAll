@@ -7,9 +7,10 @@
                     <i class="fa fa-heart fa-xl transition-all hover:text-pokeball-red cursor-pointer"></i>
                 </div>
                 <div class="flex justify-between items-start py-4">
-                    <h2 class="first-letter:uppercase text-5xl md:text-7xl font-bold">{{ pokemon.name }}</h2>
+                    <h2 class="first-letter:uppercase text-4xl sm:text-5xl md:text-7xl font-bold">{{ pokemon.name }}</h2>
                     <p class="text-xl">#{{ pokemonDisplays.pokedexNumber }}</p>
                 </div>
+                <PokemonTypeList :pokemonTypes="pokemon.types" :isShowTitle="false" :isCentered="false"/>
             </div>
         </div>
         <div class="pokeball-bg">
@@ -33,16 +34,17 @@
 </template>
 
 <script>
-    import axios from 'axios';
     import { usePokemonStore } from '~/store/pokemon';
     import { useSpeciesStore } from '~/store/species';
     import { mapActions, mapState } from 'pinia';
     import { useCaughtPokemonStore } from '~/store/caughtpokemon';
+    import PokemonTypeList from '~/layouts/pokemontypelist.vue';
 
     import pokemonTypeClass from '~/data/pokemonTypeClass';
 
     export default {
         name: 'pokedex-id',
+        components: {PokemonTypeList},
         data() {
             return {
                 isPageLoading: true,
