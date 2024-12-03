@@ -148,8 +148,12 @@
             position: absolute;
             width: 75vw;
             left: 12.5vw;
-            // background-color: pink;
             padding: 15px 0;
+
+            @media screen and (max-width: 1024px) {
+                width: 90vw;
+                left: 5vw;
+            }
             .topper-contents {
                 
             }
@@ -188,7 +192,7 @@
             z-index: 1;
 
             @media screen and (max-width: 1024px) {
-                width: 95%;
+                width: 90%;
                 border-radius: 15px;
                 margin-bottom: 15px;
             }
