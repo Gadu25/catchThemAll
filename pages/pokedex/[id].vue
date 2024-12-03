@@ -89,7 +89,6 @@
             getGradient(){
                 if(this.pokemon?.types){
                     let result = 'linear-gradient(to top right,'
-                    console.log('result', result)
                     if(this.pokemon.types.length > 1){
                         for(let type of this.pokemon?.types){
                             let color = this.pokemonColor(type.type.name)+'cc'
@@ -116,7 +115,6 @@
         watch: {
             pokemon(newVal, oldVal){
                 this.$nextTick(() => {
-                    console.log('hello shits')
                     this.fetchSpecies(this.$route.params.id)
                     // this.initialCry()
                     this.getGradient()

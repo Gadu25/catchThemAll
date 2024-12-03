@@ -93,7 +93,6 @@ export default {
         },
         clickAction(id) {
             this.isActive ? this.clicked = true : null
-            console.log('id is', id)
             this.$router.push({ name: 'pokedex-id', params: { id } });
         },
         fetchSpecies() {
