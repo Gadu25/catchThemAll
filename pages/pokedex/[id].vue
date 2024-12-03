@@ -26,7 +26,7 @@
             <div class="sparkle" style="top: 90%; left: 50%; animation-delay: .8s"></div>
             </template>
         </div>
-        <div class="container bg-card-light dark:bg-card-dark">
+        <div class="container bg-card-light dark:bg-card-dark shadow-lg">
             <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis perspiciatis quisquam voluptatibus! Sit magni laudantium obcaecati modi. Labore, aspernatur. In iure dignissimos excepturi illum expedita ab saepe. Obcaecati, quos facere?</p>
 
         </div>
