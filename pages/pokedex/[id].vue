@@ -27,7 +27,10 @@
             </template>
         </div>
         <div class="container bg-card-light dark:bg-card-dark shadow-lg">
-            <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis perspiciatis quisquam voluptatibus! Sit magni laudantium obcaecati modi. Labore, aspernatur. In iure dignissimos excepturi illum expedita ab saepe. Obcaecati, quos facere?</p>
+            <PokeDexNav v-model="menu"/>
+            <div class="my-2">
+                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis perspiciatis quisquam voluptatibus! Sit magni laudantium obcaecati modi. Labore, aspernatur. In iure dignissimos excepturi illum expedita ab saepe. Obcaecati, quos facere?</p>
+            </div>
 
         </div>
     </div>
@@ -39,12 +42,13 @@
     import { mapActions, mapState } from 'pinia';
     import { useCaughtPokemonStore } from '~/store/caughtpokemon';
     import PokemonTypeList from '~/layouts/pokemontypelist.vue';
+    import PokeDexNav from '../../components/pokedexnav.vue';
 
     import pokemonTypeClass from '~/data/pokemonTypeClass';
 
     export default {
         name: 'pokedex-id',
-        components: {PokemonTypeList},
+        components: {PokemonTypeList, PokeDexNav},
         data() {
             return {
                 isPageLoading: true,
@@ -61,6 +65,24 @@
                     shape: '',
                     color: ''
                 },
+                menu: [
+                    {
+                        name: 'About',
+                        isActive: true
+                    },
+                    {
+                        name: 'Stats',
+                        isActive: false
+                    },
+                    {
+                        name: 'Evolution',
+                        isActive: false
+                    },
+                    {
+                        name: 'Moves',
+                        isActive: false
+                    },
+                ]
             }
         },
         computed: {
@@ -166,8 +188,12 @@
             right: calc(36vw - 140px);
             opacity: .2;
             z-index: 0;
+            overflow:hidden;
             @media screen and (max-width: 768px) {
                 right: calc(45vw - 140px);
+            }
+            @media screen and (max-width: 310px) {
+                display: none;
             }
         }
 
