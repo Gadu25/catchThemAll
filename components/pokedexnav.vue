@@ -2,7 +2,7 @@
     <div>
         <div class="w-full flex justify-between overflow-auto">
             <template v-for="(item, index) in menu">
-                <div class="border-b-2 w-full text-center pt-3 pb-4 mx-2 hover:text-pokeball-blue cursor-pointer menu-item" :class="item.isActive ? 'border-b-pokeball-blue':''" @click="changeActive(index)">{{ item.name }}</div>
+                <div class="border-b-2 w-full text-center pt-3 pb-4 hover:text-pokeball-blue cursor-pointer menu-item" :class="{'border-b-pokeball-blue': item.isActive, 'px-2': index !== 0 && index !== menu.length - 1}" @click="changeActive(index)">{{ item.name }}</div>
             </template>
         </div>
     </div>
