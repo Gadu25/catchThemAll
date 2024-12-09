@@ -1,6 +1,6 @@
 <template>
     <div class="fixed bottom-12 right-5 md:bottom-10 md:right-10">
-        <div class="fab-wrapper" @click="showMenu=!showMenu" :class="{'shown':showMenu}">
+        <div class="fab-wrapper shadow" @click="showMenu=!showMenu" :class="{'shown':showMenu}">
             <!-- <img class="fab-bg" src="~/assets/images/fabBg.svg" alt="fab-icon-bg"/> -->
              <div class="fab-bg"></div>
             <img class="fab-head" src="~/assets/images/ash.svg" alt="ash-head"/>
@@ -23,28 +23,27 @@
                 <h3 class="text-4xl font-bold">Let's go and Catch 'em All!</h3>
                 <div class="lg:flex-row flex flex-col-reverse space-between mt-4">
                     <div class="leading-8 max-h-7xl max-h-[40vh] overflow-auto px-2">
-                        <p>Hi there! I’m Professor Oak, your guide to this exciting adventure. Let me show you how to get started:</p>
-                        
+                        <p>Hey there, Trainer! I'm Professor Oak, and I'm here to guide you on your amazing Pokémon journey. Ready to get started?</p>
+
                         <div class="my-2">
                             <h1 class="text-xl mb-1"><strong>Main Page</strong></h1>
                             <ul class="ms-2">
-                                <li><i>Click on Pokémon:</i> Try your luck catching Pokémon by clicking on them!</li>
-                                <li><i>Daily Pokéballs:</i> I’ll provide you with 10 Pokéballs every day to help you explore and catch Pokémon. Use them wisely!</li>
+                                <li><i>Catch Pokémon:</i> Click on Pokémon to try your luck! Every click is a new adventure.</li>
                             </ul>
                         </div>
 
                         <div class="my-2">
                             <h1 class="text-xl mb-1"><strong>Pokédex Page</strong></h1>
                             <ul class="ms-2">
-                                <li><p><i>Your Pokémon Collection:</i> Browse all the Pokémon you’ve successfully caught here.</p></li>
+                                <li><i>Your Pokémon Collection:</i> Check out all the Pokémon you've caught so far. You’re one step closer to becoming a Pokémon Master!</li>
                             </ul>
-                            
                         </div>
 
                         <!-- Closing Note -->
-                         <p>Can you catch them all?</p>
-                        <p>Ready to begin your journey? Adventure awaits—good luck, Trainer!</p>
+                        <p>Can you catch them all? The adventure begins now!</p>
+                        <p>Good luck, Trainer—your journey awaits!</p>
                     </div>
+
                     <div class="w-3/4 flex justify-center items-center">
                         <img src="~/assets/images/profOak.png" alt="prof-oak-image"/>
                     </div>
@@ -138,7 +137,7 @@
         .menu {
             position: absolute;
             top: ($fabWidth / 3) / 2;
-            left: ($fabWidth / 3) / 2;
+            left: ($fabWidth / 3) / 5;
             transition: all .2s;
             z-index: 5;
             .menu-item {
@@ -151,9 +150,10 @@
                     display: flex;
                     justify-content: center;
                     align-items: center;
-                    width: calc($fabWidth / 1.5);
-                    height: calc($fabWidth / 1.5);
+                    width: calc($fabWidth / 1.2);
+                    height: calc($fabWidth / 1.2);
                     border-radius: 100%;
+                    border: 4px solid #333333;
                 }
                 span {
                     text-align: center;
@@ -174,16 +174,17 @@
             .menu {
                 position: absolute;
                 top: -100px;
-                left: ($fabWidth / 3) / 2;
+                left: ($fabWidth / 3) / 5;
 
                 .menu-item {
                     display: flex;
                     flex-direction: column;
                     justify-content: center;
                     .circle {
-                        width: calc($fabWidth / 1.5);
-                        height: calc($fabWidth / 1.5);
+                        width: calc($fabWidth / 1.2);
+                        height: calc($fabWidth / 1.2);
                         border-radius: 100%;
+
                         // background-color: pink;
                     }
                     span {
