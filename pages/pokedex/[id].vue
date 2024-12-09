@@ -33,6 +33,7 @@
                     <PokedexContent v-model="menu" :pokemon="pokemon" :species="species"/>
                     <!-- <p>{{ pokemonDisplays.flavoredText }}</p> -->
                      <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis perspiciatis quisquam voluptatibus! Sit magni laudantium obcaecati modi. Labore, aspernatur. In iure dignissimos excepturi illum expedita ab saepe. Obcaecati, quos facere?</p> -->
+                    <PrevNext :prevPokemon="prevNext.prev" :nextPokemon="prevNext.next" class="mt-6"/>    
                 </div>
             </div>
         </div>
@@ -60,12 +61,14 @@
     import PokemonTypeList from '~/layouts/pokemontypelist.vue';
     import PokeDexNav from '../../components/pokedexnav.vue';
     import PokedexContent from '~/components/pokedexcontent.vue';
-
+    import PrevNext from '~/components/prevnext.vue';
+    import pokeapibaseurl from '~/utils/pokeapibaseurl';
+    import axios from 'axios';
     import pokemonTypeClass from '~/data/pokemonTypeClass';
 
     export default {
         name: 'pokedex-id',
-        components: {PokemonTypeList, PokeDexNav, PokedexContent},
+        components: {PokemonTypeList, PokeDexNav, PokedexContent, PrevNext},
         data() {
             return {
                 isPageLoading: true,
@@ -99,13 +102,20 @@
                         name: 'Moves',
                         isActive: false
                     },
-                ]
+                ],
+                prevNext: {
+                    prev: null,
+                    next: null
+                }
             }
         },
         computed: {
             ...mapState(usePokemonStore, ['pokemon', 'loading', 'error']),
             ...mapState(useSpeciesStore, ['species', 'speciesLoading', 'speciesError']),
             ...mapState(useCaughtPokemonStore, ['getCaughtPokemons', 'getRecentCatch', 'isCaught']),
+            caughtPokemons() {
+                return this.pokemonStore.getCaughtPokemons()
+            },
             pokemonStore() {
                 return useCaughtPokemonStore()
             }
@@ -149,6 +159,24 @@
                 this.type = type
                 this.getPokemonImage(this.pokemon.sprites?.other['official-artwork'])
             },
+            getPrevAndNext(){
+                let currIndex = this.caughtPokemons.indexOf(this.pokemon.name)
+                //prev
+                if(currIndex -1 >= 0){
+                    axios.get(pokeapibaseurl+'pokemon/'+this.caughtPokemons[currIndex - 1]).then(res => {
+                        console.log(res)
+                        this.prevNext.prev = res.data.id
+                    })
+                }
+                //next
+                if(currIndex +1 < this.caughtPokemons.length){
+                    axios.get(pokeapibaseurl+'pokemon/'+this.caughtPokemons[currIndex + 1]).then(res => {
+                        this.prevNext.next = res.data.id
+                    })
+                }
+                // this.prevNext.prev = currIndex - 1 >= 0 ? currIndex : null
+                // this.prevNext.next = currIndex + 1 < this.caughtPokemons.length ? currIndex + 1 : null
+            }
         },
         mounted() {
             this.isPageLoading = true;
@@ -161,6 +189,7 @@
                     // this.initialCry()
                     this.getGradient()
                     this.getPokemonImage(this.pokemon.sprites?.other['official-artwork'])
+                    this.getPrevAndNext()
                 })
             },
             species(newVal, oldVal){

@@ -4,7 +4,8 @@
             @touchmove="handleTouchMove" @touchend="endTouch">
             <PokedexCard class="w-full lg:10/12 xl:w-9/12" v-for="(card, index) in caughtPokemons" :key="index"
                 :class="['card', { 'is-active': index === activeIndex }]" :style="getCardStyle(index)"
-                :pokemonName='card' :isActive="index === activeIndex" />
+                :pokemonName='card' :isActive="index === activeIndex"
+                />
         </div>
     </div>
 </template>
