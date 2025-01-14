@@ -11,7 +11,7 @@
                     </template>
                 </div>
             </div>
-            <div class="pokeball"><img src='~/assets/svg/pokeball.svg' alt='pokeball' /></div>
+            <div v-if="!pokemonStore.isCaught(name)" class="pokeball"><img src='~/assets/svg/pokeball.svg' alt='pokeball' /></div>
         </div>
     </div>
 </template>
@@ -103,11 +103,11 @@ export default {
         },
         async clickCard(id) {
             if(this.cardClicked == false){
-                this.cardClicked = true
-                await this.delay(950);
                 if(this.pokemonStore.isCaught(this.name)){
                     this.$router.push({ name: 'pokemon-id', params: { id } });
                 }
+                this.cardClicked = true
+                await this.delay(950);
                 this.twitching = true;
                 await this.delay(3000);
                 if(this.getChance(50)){

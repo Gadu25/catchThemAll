@@ -327,6 +327,7 @@ export default {
   },
   mounted() {
     if(this.isCaught(this.$route.params.id)){
+
       this.handleFetch()
       this.transition()
     } else {
